@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dev Terminology · 程序员沟通术语库</title>
+<meta name="description" content="按领域分类的程序员沟通术语库：协作黑话、前端、交互组件、自适配、后端、一致性、部署、数据库、网络、安全。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <span class="brand-mark">&lt;/&gt;</span>
+      <div class="brand-text">
+        <h1>Dev Terminology</h1>
+        <p>程序员沟通术语库 · 按领域分类的 CSV 数据集</p>
+      </div>
+    </div>
+    <div class="topbar-stats" id="stats"></div>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="search-box">
+      <input id="search" type="search" placeholder="搜索术语 / 英文 / 释义…" autocomplete="off">
+      <span class="search-icon">⌕</span>
+    </div>
+    <nav class="domain-nav" id="domainNav"></nav>
+    <footer class="sidebar-footer">
+      <p>数据源：<code>data/*.csv</code></p>
+      <p>页面在浏览器端下载并解析 CSV 展示</p>
+    </footer>
+  </aside>
+
+  <main class="content">
+    <div class="content-head">
+      <div class="content-title">
+        <h2 id="domainTitle">全部术语</h2>
+        <p id="domainDesc"></p>
+      </div>
+      <div class="result-count" id="resultCount"></div>
+    </div>
+    <div class="category-bar" id="categoryBar"></div>
+    <div class="table-wrap">
+      <table class="term-table">
+        <thead>
+          <tr>
+            <th class="col-term">术语</th>
+            <th class="col-en">English</th>
+            <th class="col-cat">分类</th>
+            <th class="col-def">释义</th>
+            <th class="col-scene">使用场景</th>
+            <th class="col-rel">相关术语</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden>
+        <p>没有匹配的术语</p>
+        <p class="empty-sub">换个关键词，或点击左侧切换领域</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast" id="toast" hidden>已复制</div>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
