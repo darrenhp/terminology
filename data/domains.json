@@ -21,7 +21,7 @@
     "group": "前端领域",
     "desc": "Web 前端开发的核心概念、渲染模式、工程化与性能体验术语",
     "file": "frontend-web.csv",
-    "count": 40
+    "count": 43
   },
   {
     "id": "frontend-mobile",
@@ -45,7 +45,7 @@
     "group": "前端领域",
     "desc": "UI 组件库与交互设计中的高频组件名词，覆盖反馈提示、浮层容器、导航、录入与展示",
     "file": "ui-components.csv",
-    "count": 55
+    "count": 75
   },
   {
     "id": "adaptive-layout",
@@ -61,7 +61,7 @@
     "group": "后端与基础设施",
     "desc": "后端架构风格、服务治理、数据缓存与性能指标术语",
     "file": "backend.csv",
-    "count": 47
+    "count": 48
   },
   {
     "id": "consistency",

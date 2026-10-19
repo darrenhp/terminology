@@ -4,18 +4,18 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（13 个领域 / 579 条术语）
+## 领域划分（13 个领域 / 603 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
 | 研发协作 | 研发协作沟通 | `data/collaboration.csv` | 59 |
 | 研发协作 | 产品与设计 | `data/product-design.csv` | 36 |
-| 前端领域 | Web 前端 | `data/frontend-web.csv` | 40 |
+| 前端领域 | Web 前端 | `data/frontend-web.csv` | 43 |
 | 前端领域 | 移动端 | `data/frontend-mobile.csv` | 42 |
 | 前端领域 | PC / Mac 客户端 | `data/frontend-desktop.csv` | 34 |
-| 前端领域 | 交互组件 | `data/ui-components.csv` | 55 |
+| 前端领域 | 交互组件 | `data/ui-components.csv` | 75 |
 | 前端领域 | 自适配与布局 | `data/adaptive-layout.csv` | 35 |
-| 后端与基础设施 | 后端与服务 | `data/backend.csv` | 47 |
+| 后端与基础设施 | 后端与服务 | `data/backend.csv` | 48 |
 | 后端与基础设施 | 一致性与分布式 | `data/consistency.csv` | 40 |
 | 后端与基础设施 | 部署与 DevOps | `data/deployment.csv` | 47 |
 | 后端与基础设施 | 数据库 | `data/database.csv` | 44 |

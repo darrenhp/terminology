@@ -2,6 +2,7 @@ term,en,category,definition,scenario,related
 API,Application Programming Interface,架构风格,系统间互相调用的接口约定,API 文档先更新再联调,"接口,REST"
 REST,REST,架构风格,基于 HTTP 语义的资源型接口风格,新接口按 REST 风格设计,"API,HTTP"
 GraphQL,GraphQL,架构风格,由客户端声明所需数据的查询语言,GraphQL 治前端过度拉取,"API,BFF"
+BFF,Backend for Frontend,架构风格,为特定前端定制的后端聚合层，裁剪接口适配端上需求,移动端和 PC 各起一个 BFF,"网关,API"
 RPC,Remote Procedure Call,架构风格,像调用本地函数一样调用远程服务,内部服务走 RPC,"gRPC,Thrift"
 gRPC,gRPC,架构风格,基于 HTTP/2 和 Protobuf 的高性能 RPC,内部通信用 gRPC,"RPC,Protobuf"
 微服务,Microservices,架构风格,按业务拆分为独立部署的小服务,拆微服务别拆太碎,"单体,服务拆分"
