@@ -10,14 +10,16 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from data_collab import DOMAINS as D_COLLAB
+from data_git import DOMAINS as D_GIT
 from data_frontend import DOMAINS as D_FRONTEND
 from data_backend import DOMAINS as D_BACKEND
+from data_ai import DOMAINS as D_AI
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA_DIR = os.path.join(ROOT, "data")
 HEADER = ["term", "en", "category", "definition", "scenario", "related"]
 
-DOMAIN_ORDER = D_COLLAB + D_FRONTEND + D_BACKEND
+DOMAIN_ORDER = D_COLLAB + D_GIT + D_FRONTEND + D_BACKEND + D_AI
 
 
 def build():

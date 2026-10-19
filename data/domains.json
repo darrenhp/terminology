@@ -5,7 +5,7 @@
     "group": "研发协作",
     "desc": "程序员日常沟通中的高频黑话与协作术语，按沟通对齐 / 任务推进 / 质量交付 / 问题排查 / 职场文化分类",
     "file": "collaboration.csv",
-    "count": 59
+    "count": 69
   },
   {
     "id": "product-design",
@@ -13,7 +13,23 @@
     "group": "研发协作",
     "desc": "与产品经理、设计师沟通时的高频术语，覆盖需求文档、设计产出、数据指标与项目流程",
     "file": "product-design.csv",
-    "count": 36
+    "count": 45
+  },
+  {
+    "id": "git",
+    "name": "Git 与版本管理",
+    "group": "研发协作",
+    "desc": "Git 日常操作、分支合并、协作流程与排障术语，按基本操作 / 分支与合并 / 协作流程 / 高级与排障分类",
+    "file": "git.csv",
+    "count": 24
+  },
+  {
+    "id": "testing",
+    "name": "测试与质量",
+    "group": "研发协作",
+    "desc": "测试类型、测试技术与质量指标术语，覆盖单测集成、Mock 替身、覆盖率与质量分级",
+    "file": "testing.csv",
+    "count": 19
   },
   {
     "id": "frontend-web",
@@ -21,7 +37,7 @@
     "group": "前端领域",
     "desc": "Web 前端开发的核心概念、渲染模式、工程化与性能体验术语",
     "file": "frontend-web.csv",
-    "count": 43
+    "count": 56
   },
   {
     "id": "frontend-mobile",
@@ -29,7 +45,7 @@
     "group": "前端领域",
     "desc": "iOS / Android / 小程序移动端开发的跨端方案、端能力、性能与发布术语",
     "file": "frontend-mobile.csv",
-    "count": 42
+    "count": 51
   },
   {
     "id": "frontend-desktop",
@@ -37,7 +53,7 @@
     "group": "前端领域",
     "desc": "桌面端开发的技术框架、窗口交互、系统集成与打包分发术语",
     "file": "frontend-desktop.csv",
-    "count": 34
+    "count": 39
   },
   {
     "id": "ui-components",
@@ -45,7 +61,7 @@
     "group": "前端领域",
     "desc": "UI 组件库与交互设计中的高频组件名词，覆盖反馈提示、浮层容器、导航、录入与展示",
     "file": "ui-components.csv",
-    "count": 75
+    "count": 84
   },
   {
     "id": "adaptive-layout",
@@ -53,7 +69,7 @@
     "group": "前端领域",
     "desc": "响应式与自适应方案、布局技术、视口单位与系统级适配能力术语",
     "file": "adaptive-layout.csv",
-    "count": 35
+    "count": 40
   },
   {
     "id": "backend",
@@ -61,7 +77,7 @@
     "group": "后端与基础设施",
     "desc": "后端架构风格、服务治理、数据缓存与性能指标术语",
     "file": "backend.csv",
-    "count": 48
+    "count": 59
   },
   {
     "id": "consistency",
@@ -69,7 +85,7 @@
     "group": "后端与基础设施",
     "desc": "分布式系统中的一致性模型、分布式事务、并发控制与共识算法术语",
     "file": "consistency.csv",
-    "count": 40
+    "count": 48
   },
   {
     "id": "deployment",
@@ -77,7 +93,7 @@
     "group": "后端与基础设施",
     "desc": "CI/CD、发布策略、基础设施与故障治理术语",
     "file": "deployment.csv",
-    "count": 47
+    "count": 57
   },
   {
     "id": "database",
@@ -85,7 +101,7 @@
     "group": "后端与基础设施",
     "desc": "关系型与非关系型数据库的基础概念、索引优化、事务锁与架构扩展术语",
     "file": "database.csv",
-    "count": 44
+    "count": 54
   },
   {
     "id": "network",
@@ -93,7 +109,7 @@
     "group": "后端与基础设施",
     "desc": "网络协议基础、HTTP 体系、实时通信与排障观测术语",
     "file": "network.csv",
-    "count": 51
+    "count": 61
   },
   {
     "id": "security",
@@ -101,6 +117,22 @@
     "group": "后端与基础设施",
     "desc": "攻击手法、防护机制、身份认证与加密合规术语",
     "file": "security.csv",
-    "count": 49
+    "count": 60
+  },
+  {
+    "id": "ai-llm",
+    "name": "AI 与大模型",
+    "group": "智能与数据",
+    "desc": "大模型基础概念、提示与交互、工程架构与评估运营术语，覆盖 LLM / RAG / Agent 时代的高频沟通黑话",
+    "file": "ai-llm.csv",
+    "count": 30
+  },
+  {
+    "id": "data-eng",
+    "name": "数据工程",
+    "group": "智能与数据",
+    "desc": "数据管道、数仓建模与平台工具术语，覆盖 ETL / 数仓分层 / 实时计算的高频沟通场景",
+    "file": "data-eng.csv",
+    "count": 16
   }
 ]
