@@ -4,7 +4,7 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（25 个领域 / 1499 条术语）
+## 领域划分（29 个领域 / 1718 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
@@ -33,6 +33,10 @@
 | 运营与增长 | 广告与变现 | `data/ads.csv` | 160 |
 | 金融与经济 | 投资与交易 | `data/investing.csv` | 65 |
 | 金融与经济 | 经济与金融 | `data/macro-econ.csv` | 34 |
+| 概念祛魅 | 系统与网络基础 | `data/cs-basics.csv` | 63 |
+| 概念祛魅 | 算法、数学与编程概念 | `data/cs-code.csv` | 74 |
+| 概念祛魅 | AI 与大模型术语 | `data/ai-plain.csv` | 58 |
+| 概念祛魅 | 互联网黑话 | `data/buzzword.csv` | 24 |
 
 ## 数据格式
 
@@ -82,6 +86,7 @@ python3 scripts/build_data.py
 - `scripts/data_erp.py` —— ERP 与企业应用
 - `scripts/data_wfm.py` —— WFM 与劳动力管理
 - `scripts/data_charts.py` —— 图表与可视化
+- `scripts/data_zhihu.py` —— 概念祛魅 4 个领域（系统与网络基础 / 算法、数学与编程概念 / AI 与大模型术语 / 互联网黑话）
 
 ## 本地预览
 
