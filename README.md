@@ -4,12 +4,13 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（20 个领域 / 1048 条术语）
+## 领域划分（21 个领域 / 1074 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
-| 研发协作 | 研发协作沟通 | `data/collaboration.csv` | 69 |
-| 研发协作 | 产品与设计 | `data/product-design.csv` | 55 |
+| 研发协作 | 研发协作沟通 | `data/collaboration.csv` | 68 |
+| 研发协作 | 项目管理 | `data/project-mgmt.csv` | 24 |
+| 研发协作 | 产品与设计 | `data/product-design.csv` | 58 |
 | 研发协作 | Git 与版本管理 | `data/git.csv` | 24 |
 | 研发协作 | 测试与质量 | `data/testing.csv` | 19 |
 | 前端领域 | Web 前端 | `data/frontend-web.csv` | 56 |
@@ -67,6 +68,7 @@ python3 scripts/build_data.py
 脚本会做校验（空字段、领域内重复术语），通过后覆盖生成 `data/*.csv` 与 `data/domains.json`。
 
 - `scripts/data_collab.py` —— 协作沟通、产品与设计
+- `scripts/data_pm.py` —— 项目管理
 - `scripts/data_git.py` —— Git 与版本管理、测试与质量
 - `scripts/data_frontend.py` —— 前端 5 个领域
 - `scripts/data_backend.py` —— 后端与基础设施 6 个领域

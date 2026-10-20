@@ -5,7 +5,7 @@
     "group": "研发协作",
     "desc": "程序员日常沟通中的高频黑话与协作术语，按沟通对齐 / 任务推进 / 质量交付 / 问题排查 / 职场文化分类",
     "file": "collaboration.csv",
-    "count": 69
+    "count": 68
   },
   {
     "id": "product-design",
@@ -13,7 +13,15 @@
     "group": "研发协作",
     "desc": "与产品经理、设计师沟通时的高频术语，覆盖需求文档、设计产出、数据指标与项目流程",
     "file": "product-design.csv",
-    "count": 55
+    "count": 58
+  },
+  {
+    "id": "project-mgmt",
+    "name": "项目管理",
+    "group": "研发协作",
+    "desc": "项目治理、计划进度、风险变更与交付验收术语，覆盖立项、排期、控进度、控风险到收尾复盘的高频沟通",
+    "file": "project-mgmt.csv",
+    "count": 24
   },
   {
     "id": "git",
