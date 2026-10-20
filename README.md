@@ -4,19 +4,19 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（21 个领域 / 1074 条术语）
+## 领域划分（23 个领域 / 1308 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
 | 研发协作 | 研发协作沟通 | `data/collaboration.csv` | 68 |
-| 研发协作 | 项目管理 | `data/project-mgmt.csv` | 24 |
+| 研发协作 | 项目管理 | `data/project-mgmt.csv` | 22 |
 | 研发协作 | 产品与设计 | `data/product-design.csv` | 58 |
 | 研发协作 | Git 与版本管理 | `data/git.csv` | 24 |
 | 研发协作 | 测试与质量 | `data/testing.csv` | 19 |
 | 前端领域 | Web 前端 | `data/frontend-web.csv` | 56 |
 | 前端领域 | 移动端 | `data/frontend-mobile.csv` | 51 |
 | 前端领域 | PC / Mac 客户端 | `data/frontend-desktop.csv` | 39 |
-| 前端领域 | 交互组件 | `data/ui-components.csv` | 95 |
+| 前端领域 | 交互组件 | `data/ui-components.csv` | 109 |
 | 前端领域 | 自适配与布局 | `data/adaptive-layout.csv` | 40 |
 | 后端与基础设施 | 后端与服务 | `data/backend.csv` | 70 |
 | 后端与基础设施 | 一致性与分布式 | `data/consistency.csv` | 48 |
@@ -29,6 +29,8 @@
 | 企业应用 | ERP 与企业应用 | `data/erp.csv` | 91 |
 | 企业应用 | WFM 与劳动力管理 | `data/wfm.csv` | 25 |
 | 图表与可视化 | 图表与可视化 | `data/charts-viz.csv` | 76 |
+| 运营与增长 | 用户运营 | `data/user-ops.csv` | 90 |
+| 运营与增长 | 广告与变现 | `data/ads.csv` | 132 |
 
 ## 数据格式
 
@@ -69,6 +71,7 @@ python3 scripts/build_data.py
 
 - `scripts/data_collab.py` —— 协作沟通、产品与设计
 - `scripts/data_pm.py` —— 项目管理
+- `scripts/data_growth.py` —— 用户运营、广告与变现
 - `scripts/data_git.py` —— Git 与版本管理、测试与质量
 - `scripts/data_frontend.py` —— 前端 5 个领域
 - `scripts/data_backend.py` —— 后端与基础设施 6 个领域

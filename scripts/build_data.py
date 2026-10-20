@@ -18,12 +18,13 @@ from data_ai import DOMAINS as D_AI
 from data_erp import DOMAINS as D_ERP
 from data_wfm import DOMAINS as D_WFM
 from data_charts import DOMAINS as D_CHARTS
+from data_growth import DOMAINS as D_GROWTH
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA_DIR = os.path.join(ROOT, "data")
 HEADER = ["term", "en", "category", "definition", "scenario", "related"]
 
-DOMAIN_ORDER = D_COLLAB + D_PM + D_GIT + D_FRONTEND + D_BACKEND + D_AI + D_ERP + D_WFM + D_CHARTS
+DOMAIN_ORDER = D_COLLAB + D_PM + D_GIT + D_FRONTEND + D_BACKEND + D_AI + D_ERP + D_WFM + D_CHARTS + D_GROWTH
 
 
 def build():
