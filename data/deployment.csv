@@ -78,3 +78,5 @@ Serverless,Serverless / FaaS,基础设施,无需管理服务器按调用计费�
 拨测,Synthetic Monitoring / Probe,故障治理,从外部模拟用户请求主动探测可用性,多地拨测发现某个区域访问异常,"监控,告警"
 容量规划,Capacity Planning,成本与容量,按业务增长预估资源水位的规划,大促前做容量规划与压测验证,"压测,HPA"
 FinOps,FinOps (Cloud Financial Operations),成本与容量,对云资源成本的可视化分析与优化实践,云账单翻倍了，FinOps 查一下资源浪费,"容量规划,镜像瘦身"
+DevOps,DevOps,运维体系,开发和运维别互相甩锅，把流程自动化,说到底是流程自动化,"CI/CD,站点可靠性工程"
+站点可靠性工程,SRE,运维体系,用工程手段保障线上稳定,SRE 就是运维加开发,"DevOps,稳定性"

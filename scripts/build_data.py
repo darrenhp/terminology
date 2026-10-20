@@ -21,12 +21,34 @@ from data_charts import DOMAINS as D_CHARTS
 from data_growth import DOMAINS as D_GROWTH
 from data_finance import DOMAINS as D_FINANCE
 from data_zhihu import DOMAINS as D_ZHIHU
+from data_zhihu import MERGE_TERMS, DOMAIN_PATCH
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA_DIR = os.path.join(ROOT, "data")
 HEADER = ["term", "en", "category", "definition", "scenario", "related"]
 
-DOMAIN_ORDER = D_COLLAB + D_PM + D_GIT + D_FRONTEND + D_BACKEND + D_AI + D_ERP + D_WFM + D_CHARTS + D_GROWTH + D_FINANCE + D_ZHIHU
+BASE_ORDER = D_COLLAB + D_PM + D_GIT + D_FRONTEND + D_BACKEND + D_AI + D_ERP + D_WFM + D_CHARTS + D_GROWTH + D_FINANCE
+
+
+def _apply(domains):
+    """套用改名 / 改组补丁，并追加从其他来源合并进来的术语。"""
+    out = []
+    for d in domains:
+        d = dict(d)
+        patch = DOMAIN_PATCH.get(d["id"])
+        if patch:
+            d.update(patch)
+        extra = MERGE_TERMS.get(d["id"])
+        if extra:
+            d["terms"] = list(d["terms"]) + list(extra)
+        out.append(d)
+    return out
+
+
+_order = _apply(BASE_ORDER)
+# network 扩成「系统与网络基础」后改了分组，移到末尾与新建领域连续展示，避免分组被截断
+_moved = [d for d in _order if d["id"] in DOMAIN_PATCH]
+DOMAIN_ORDER = [d for d in _order if d["id"] not in DOMAIN_PATCH] + _moved + _apply(D_ZHIHU)
 
 
 def build():

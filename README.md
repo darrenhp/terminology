@@ -4,39 +4,37 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（29 个领域 / 1718 条术语）
+## 领域划分（27 个领域 / 1717 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
-| 研发协作 | 研发协作沟通 | `data/collaboration.csv` | 68 |
+| 研发协作 | 研发协作沟通 | `data/collaboration.csv` | 86 |
 | 研发协作 | 项目管理 | `data/project-mgmt.csv` | 22 |
-| 研发协作 | 产品与设计 | `data/product-design.csv` | 58 |
+| 研发协作 | 产品与设计 | `data/product-design.csv` | 60 |
 | 研发协作 | Git 与版本管理 | `data/git.csv` | 24 |
-| 研发协作 | 测试与质量 | `data/testing.csv` | 19 |
+| 研发协作 | 测试与质量 | `data/testing.csv` | 20 |
 | 前端领域 | Web 前端 | `data/frontend-web.csv` | 56 |
 | 前端领域 | 移动端 | `data/frontend-mobile.csv` | 51 |
 | 前端领域 | PC / Mac 客户端 | `data/frontend-desktop.csv` | 39 |
 | 前端领域 | 交互组件 | `data/ui-components.csv` | 109 |
 | 前端领域 | 自适配与布局 | `data/adaptive-layout.csv` | 40 |
-| 后端与基础设施 | 后端与服务 | `data/backend.csv` | 90 |
+| 后端与基础设施 | 后端与服务 | `data/backend.csv` | 91 |
 | 后端与基础设施 | 一致性与分布式 | `data/consistency.csv` | 48 |
-| 后端与基础设施 | 部署与 DevOps | `data/deployment.csv` | 79 |
+| 后端与基础设施 | 部署与 DevOps | `data/deployment.csv` | 81 |
 | 后端与基础设施 | 数据库 | `data/database.csv` | 54 |
-| 后端与基础设施 | 网络与协议 | `data/network.csv` | 61 |
 | 后端与基础设施 | 安全 | `data/security.csv` | 72 |
-| 智能与数据 | AI 与大模型 | `data/ai-llm.csv` | 30 |
-| 智能与数据 | 数据工程 | `data/data-eng.csv` | 16 |
+| 计算机科学基础 | 系统与网络基础 | `data/network.csv` | 123 |
+| 计算机科学基础 | 算法数学与编程 | `data/algo-math.csv` | 74 |
+| 智能与数据 | AI 与大模型 | `data/ai-llm.csv` | 79 |
+| 智能与数据 | 数据工程 | `data/data-eng.csv` | 18 |
 | 企业应用 | ERP 与企业应用 | `data/erp.csv` | 91 |
 | 企业应用 | WFM 与劳动力管理 | `data/wfm.csv` | 25 |
 | 图表与可视化 | 图表与可视化 | `data/charts-viz.csv` | 76 |
-| 运营与增长 | 用户运营 | `data/user-ops.csv` | 112 |
+| 运营与增长 | 用户运营 | `data/user-ops.csv` | 116 |
 | 运营与增长 | 广告与变现 | `data/ads.csv` | 160 |
 | 金融与经济 | 投资与交易 | `data/investing.csv` | 65 |
 | 金融与经济 | 经济与金融 | `data/macro-econ.csv` | 34 |
-| 概念祛魅 | 系统与网络基础 | `data/cs-basics.csv` | 63 |
-| 概念祛魅 | 算法、数学与编程概念 | `data/cs-code.csv` | 74 |
-| 概念祛魅 | AI 与大模型术语 | `data/ai-plain.csv` | 58 |
-| 概念祛魅 | 互联网黑话 | `data/buzzword.csv` | 24 |
+| 其他 | 暂无归类 | `data/misc.csv` | 3 |
 
 ## 数据格式
 
@@ -86,7 +84,7 @@ python3 scripts/build_data.py
 - `scripts/data_erp.py` —— ERP 与企业应用
 - `scripts/data_wfm.py` —— WFM 与劳动力管理
 - `scripts/data_charts.py` —— 图表与可视化
-- `scripts/data_zhihu.py` —— 概念祛魅 4 个领域（系统与网络基础 / 算法、数学与编程概念 / AI 与大模型术语 / 互联网黑话）
+- `scripts/data_zhihu.py` —— 知乎「概念祛魅」语料：新建 `algo-math`（算法数学与编程）与 `misc`（暂无归类），并通过 `MERGE_TERMS` / `DOMAIN_PATCH` 把其余条目并入已有领域（network 改名「系统与网络基础」并扩到 123 条、ai-llm、collaboration、user-ops、data-eng、testing、product-design、deployment、backend）
 
 ## 本地预览
 

@@ -5,7 +5,7 @@
     "group": "研发协作",
     "desc": "程序员日常沟通中的高频黑话与协作术语，按沟通对齐 / 任务推进 / 质量交付 / 问题排查 / 职场文化分类",
     "file": "collaboration.csv",
-    "count": 68
+    "count": 86
   },
   {
     "id": "product-design",
@@ -13,7 +13,7 @@
     "group": "研发协作",
     "desc": "与产品经理、设计师沟通时的高频术语，覆盖需求文档、设计产出、数据指标与项目流程",
     "file": "product-design.csv",
-    "count": 58
+    "count": 60
   },
   {
     "id": "project-mgmt",
@@ -37,7 +37,7 @@
     "group": "研发协作",
     "desc": "测试类型、测试技术与质量指标术语，覆盖单测集成、Mock 替身、覆盖率与质量分级",
     "file": "testing.csv",
-    "count": 19
+    "count": 20
   },
   {
     "id": "frontend-web",
@@ -85,7 +85,7 @@
     "group": "后端与基础设施",
     "desc": "后端架构风格、服务治理、数据缓存与性能指标术语",
     "file": "backend.csv",
-    "count": 90
+    "count": 91
   },
   {
     "id": "consistency",
@@ -101,7 +101,7 @@
     "group": "后端与基础设施",
     "desc": "CI/CD、发布策略、基础设施与故障治理术语",
     "file": "deployment.csv",
-    "count": 79
+    "count": 81
   },
   {
     "id": "database",
@@ -110,14 +110,6 @@
     "desc": "关系型与非关系型数据库的基础概念、索引优化、事务锁与架构扩展术语",
     "file": "database.csv",
     "count": 54
-  },
-  {
-    "id": "network",
-    "name": "网络与协议",
-    "group": "后端与基础设施",
-    "desc": "网络协议基础、HTTP 体系、实时通信与排障观测术语",
-    "file": "network.csv",
-    "count": 61
   },
   {
     "id": "security",
@@ -133,7 +125,7 @@
     "group": "智能与数据",
     "desc": "大模型基础概念、提示与交互、工程架构与评估运营术语，覆盖 LLM / RAG / Agent 时代的高频沟通黑话",
     "file": "ai-llm.csv",
-    "count": 30
+    "count": 79
   },
   {
     "id": "data-eng",
@@ -141,7 +133,7 @@
     "group": "智能与数据",
     "desc": "数据管道、数仓建模与平台工具术语，覆盖 ETL / 数仓分层 / 实时计算的高频沟通场景",
     "file": "data-eng.csv",
-    "count": 16
+    "count": 18
   },
   {
     "id": "erp",
@@ -173,7 +165,7 @@
     "group": "运营与增长",
     "desc": "用户运营与增长术语：指标体系、用户分层与生命周期、增长实验、触达活动与数据平台，覆盖与运营同学对齐口径时的高频沟通场景",
     "file": "user-ops.csv",
-    "count": 112
+    "count": 116
   },
   {
     "id": "ads",
@@ -200,35 +192,27 @@
     "count": 34
   },
   {
-    "id": "cs-basics",
+    "id": "network",
     "name": "系统与网络基础",
-    "group": "概念祛魅",
-    "desc": "硬件体系结构、操作系统、并发调度、网络与云计算的日常术语，按硬件 / 操作系统 / 并发 / 网络 / 云与部署 / 存储分类，全部给一句大白话解释",
-    "file": "cs-basics.csv",
-    "count": 63
+    "group": "计算机科学基础",
+    "desc": "硬件体系结构、操作系统、并发调度、网络通信、容灾扩展、云计算与存储，叠加原有协议与 HTTP 体系，全部给一句大白话解释",
+    "file": "network.csv",
+    "count": 123
   },
   {
-    "id": "cs-code",
-    "name": "算法、数学与编程概念",
-    "group": "概念祛魅",
-    "desc": "算法思想、数据结构、数学统计、编程语言概念与图形编译术语，按算法思想 / 数据结构 / 数学与统计 / 语言概念 / 编译与图形 / 设计原则分类",
-    "file": "cs-code.csv",
+    "id": "algo-math",
+    "name": "算法数学与编程",
+    "group": "计算机科学基础",
+    "desc": "算法思想、数据结构、数学统计、编程语言概念与编译图形术语，按算法思想 / 数据结构 / 数学与统计 / 语言概念 / 编译与图形 / 设计原则分类，每条给一句大白话",
+    "file": "algo-math.csv",
     "count": 74
   },
   {
-    "id": "ai-plain",
-    "name": "AI 与大模型术语",
-    "group": "概念祛魅",
-    "desc": "大模型与深度学习的高频术语，按基础概念 / 模型架构 / 训练与数据 / 推理优化 / 应用范式 / 造词观察分类，每条给一句大白话",
-    "file": "ai-plain.csv",
-    "count": 58
-  },
-  {
-    "id": "buzzword",
-    "name": "互联网黑话",
-    "group": "概念祛魅",
-    "desc": "汇报、战略、运营与工程里的高频包装词，按汇报话术 / 战略包装 / 运营话术 / 工程术语分类，附一句去掉包装后的实话",
-    "file": "buzzword.csv",
-    "count": 24
+    "id": "misc",
+    "name": "暂无归类",
+    "group": "其他",
+    "desc": "与已有条目同义或归属未定的术语，暂放此处，确认后再合并进对应领域",
+    "file": "misc.csv",
+    "count": 3
   }
 ]
