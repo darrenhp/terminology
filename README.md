@@ -4,7 +4,7 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（18 个领域 / 918 条术语）
+## 领域划分（20 个领域 / 1027 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
@@ -25,7 +25,9 @@
 | 后端与基础设施 | 安全 | `data/security.csv` | 72 |
 | 智能与数据 | AI 与大模型 | `data/ai-llm.csv` | 30 |
 | 智能与数据 | 数据工程 | `data/data-eng.csv` | 16 |
-| 企业应用 | ERP 与企业应用 | `data/erp.csv` | 83 |
+| 企业应用 | ERP 与企业应用 | `data/erp.csv` | 91 |
+| 企业应用 | WFM 与劳动力管理 | `data/wfm.csv` | 25 |
+| 图表与可视化 | 图表与可视化 | `data/charts-viz.csv` | 76 |
 
 ## 数据格式
 
@@ -70,6 +72,8 @@ python3 scripts/build_data.py
 - `scripts/data_backend.py` —— 后端与基础设施 6 个领域
 - `scripts/data_ai.py` —— AI 与大模型、数据工程
 - `scripts/data_erp.py` —— ERP 与企业应用
+- `scripts/data_wfm.py` —— WFM 与劳动力管理
+- `scripts/data_charts.py` —— 图表与可视化
 
 ## 本地预览
 
