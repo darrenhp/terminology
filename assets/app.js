@@ -235,16 +235,19 @@
   function renderTable(items) {
     var shown = items.filter(matches);
     $("empty").hidden = shown.length > 0;
+    var showDomain = state.current === "all";
+    $("thDomain").hidden = !showDomain; // 仅“全部术语”视图显示领域列
     var html = "";
     shown.forEach(function (it) {
       var rel = it.related.map(function (r) {
         return '<button class="rel-chip" data-rel="' + escapeHTML(r) + '">' + escapeHTML(r) + "</button>";
       }).join("");
-      var domainTag = state.current === "all"
-        ? '<span class="domain-tag">' + escapeHTML(it.domainName) + "</span>"
+      var domainCell = showDomain
+        ? '<td class="cell-domain"><span class="domain-tag">' + escapeHTML(it.domainName) + "</span></td>"
         : "";
       html += "<tr>" +
-        '<td><span class="term-name" title="点击复制">' + domainTag + escapeHTML(it.term) + "</span></td>" +
+        '<td><span class="term-name" title="点击复制">' + escapeHTML(it.term) + "</span></td>" +
+        domainCell +
         '<td><span class="term-en">' + escapeHTML(it.en) + "</span></td>" +
         '<td><span class="term-cat">' + escapeHTML(it.category) + "</span></td>" +
         '<td class="term-def">' + escapeHTML(it.definition) + "</td>" +
