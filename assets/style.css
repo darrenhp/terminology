@@ -1,9 +1,11 @@
-/* Dev Terminology - 深色主题 */
-:root {
+/* Dev Terminology - 主题变量（深色为默认，浅色通过 [data-theme="light"] 覆盖） */
+:root,
+[data-theme="dark"] {
   --bg: #0b0f14;
   --bg-soft: #10161e;
   --panel: #131a23;
   --panel-2: #172230;
+  --topbar-bg: rgba(11, 15, 20, 0.85);
   --border: #22303f;
   --border-soft: #1b2734;
   --text: #dbe7f3;
@@ -11,17 +13,56 @@
   --text-faint: #5b7089;
   --accent: #4cc2ff;
   --accent-soft: rgba(76, 194, 255, 0.12);
+  --accent-line: rgba(76, 194, 255, 0.28);
   --green: #3fb950;
   --amber: #d29922;
   --red: #f85149;
   --purple: #bc8cff;
+  /* 语义色的半透明派生 */
+  --star-soft: rgba(210, 153, 34, 0.12);
+  --star-line: rgba(210, 153, 34, 0.5);
+  --star-row: rgba(210, 153, 34, 0.05);
+  --done-soft: rgba(248, 81, 73, 0.12);
+  --done-line: rgba(248, 81, 73, 0.5);
+  --done-row: rgba(248, 81, 73, 0.05);
+  --cat-soft: rgba(63, 185, 80, 0.1);
+  --cat-line: rgba(63, 185, 80, 0.25);
   --radius: 10px;
   --mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+[data-theme="light"] {
+  --bg: #f4f7fa;
+  --bg-soft: #e9eef5;
+  --panel: #ffffff;
+  --panel-2: #f0f4f9;
+  --topbar-bg: rgba(255, 255, 255, 0.88);
+  --border: #d3dbe5;
+  --border-soft: #e2e8f0;
+  --text: #14202c;
+  --text-dim: #4d5f72;
+  --text-faint: #7c8b9c;
+  --accent: #0a66c2;
+  --accent-soft: rgba(10, 102, 194, 0.1);
+  --accent-line: rgba(10, 102, 194, 0.35);
+  --green: #1a7f37;
+  --amber: #9a6700;
+  --red: #cf222e;
+  --purple: #8250df;
+  --star-soft: rgba(212, 167, 44, 0.16);
+  --star-line: rgba(154, 103, 0, 0.45);
+  --star-row: rgba(212, 167, 44, 0.09);
+  --done-soft: rgba(207, 34, 46, 0.11);
+  --done-line: rgba(207, 34, 46, 0.45);
+  --done-row: rgba(207, 34, 46, 0.07);
+  --cat-soft: rgba(26, 127, 55, 0.12);
+  --cat-line: rgba(26, 127, 55, 0.3);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html { color-scheme: dark; }
+html[data-theme="light"] { color-scheme: light; }
 
 body {
   background: var(--bg);
@@ -35,7 +76,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(11, 15, 20, 0.85);
+  background: var(--topbar-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-soft);
 }
@@ -59,7 +100,7 @@ body {
   font-weight: 700;
   color: var(--accent);
   background: var(--accent-soft);
-  border: 1px solid rgba(76, 194, 255, 0.25);
+  border: 1px solid var(--accent-line);
   border-radius: 8px;
   padding: 6px 10px;
 }
@@ -82,6 +123,24 @@ body {
 .stat-pill b.mk-star { color: var(--amber); margin-left: 6px; }
 .stat-pill b.mk-done { color: var(--red); margin-left: 6px; }
 .stat-pill .mk-pct { color: var(--text-faint); margin-left: 6px; }
+
+.theme-toggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
 
 /* ---------- Slogan（顶栏居中） ---------- */
 .slogan {
@@ -193,7 +252,7 @@ body {
 .nav-item:hover { background: var(--panel-2); color: var(--text); }
 .nav-item.active {
   background: var(--accent-soft);
-  border-color: rgba(76, 194, 255, 0.3);
+  border-color: var(--accent-line);
   color: var(--accent);
 }
 .nav-item .count {
@@ -234,7 +293,7 @@ body {
   cursor: pointer;
   transition: all 0.12s;
 }
-.reset-btn:hover { color: var(--red); border-color: rgba(248, 81, 73, 0.5); }
+.reset-btn:hover { color: var(--red); border-color: var(--done-line); }
 
 /* ---------- 主内容 ---------- */
 .content {
@@ -298,13 +357,13 @@ body {
 
 .chip.mark-chip.mk-star.active {
   color: var(--amber);
-  border-color: rgba(210, 153, 34, 0.6);
-  background: rgba(210, 153, 34, 0.12);
+  border-color: var(--star-line);
+  background: var(--star-soft);
 }
 .chip.mark-chip.mk-done.active {
   color: var(--red);
-  border-color: rgba(248, 81, 73, 0.6);
-  background: rgba(248, 81, 73, 0.12);
+  border-color: var(--done-line);
+  background: var(--done-soft);
 }
 
 /* ---------- 表格 ---------- */
@@ -360,17 +419,17 @@ body {
 .mark-btn:hover { color: var(--text); border-color: var(--accent); }
 .mark-btn.star.on {
   color: var(--amber);
-  border-color: rgba(210, 153, 34, 0.5);
-  background: rgba(210, 153, 34, 0.12);
+  border-color: var(--star-line);
+  background: var(--star-soft);
 }
 .mark-btn.done.on {
   color: var(--red);
-  border-color: rgba(248, 81, 73, 0.5);
-  background: rgba(248, 81, 73, 0.12);
+  border-color: var(--done-line);
+  background: var(--done-soft);
 }
 
-.term-table tbody tr.is-starred { background: rgba(210, 153, 34, 0.05); }
-.term-table tbody tr.is-mastered { background: rgba(248, 81, 73, 0.05); }
+.term-table tbody tr.is-starred { background: var(--star-row); }
+.term-table tbody tr.is-mastered { background: var(--done-row); }
 .term-table tbody tr.is-mastered .term-name { color: var(--text-faint); text-decoration: line-through; }
 .term-table tbody tr.is-starred:hover,
 .term-table tbody tr.is-mastered:hover { background: var(--panel-2); }
@@ -405,8 +464,8 @@ body {
   display: inline-block;
   font-size: 12px;
   color: var(--green);
-  background: rgba(63, 185, 80, 0.1);
-  border: 1px solid rgba(63, 185, 80, 0.25);
+  background: var(--cat-soft);
+  border: 1px solid var(--cat-line);
   border-radius: 6px;
   padding: 1px 8px;
   white-space: nowrap;
@@ -423,8 +482,8 @@ body {
 .rel-chip {
   font-size: 12px;
   color: var(--amber);
-  background: rgba(210, 153, 34, 0.08);
-  border: 1px solid rgba(210, 153, 34, 0.22);
+  background: var(--star-soft);
+  border: 1px solid var(--star-line);
   border-radius: 6px;
   padding: 1px 8px;
   cursor: pointer;
@@ -459,7 +518,7 @@ body {
   padding: 8px 18px;
   font-size: 13.5px;
   z-index: 100;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   animation: toast-in 0.18s ease-out;
 }
 

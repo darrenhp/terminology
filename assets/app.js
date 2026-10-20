@@ -86,6 +86,27 @@
     return c;
   }
 
+  /* ---------- 主题切换（深色 / 浅色），同样存 localStorage ---------- */
+  var THEME_KEY = "devterm.theme.v1";
+  var THEME_ICON = { dark: "☾", light: "☀" };
+
+  function currentTheme() {
+    var t = document.documentElement.getAttribute("data-theme");
+    return t === "light" ? "light" : "dark";
+  }
+
+  function applyTheme(theme, persist) {
+    document.documentElement.setAttribute("data-theme", theme);
+    var btn = $("themeToggle");
+    if (btn) {
+      btn.textContent = THEME_ICON[theme];
+      btn.title = theme === "light" ? "切换到深色主题" : "切换到浅色主题";
+    }
+    if (persist) {
+      try { localStorage.setItem(THEME_KEY, theme); } catch (e) { /* 忽略 */ }
+    }
+  }
+
   /* ---------- CSV 解析（支持引号包裹、"" 转义、CRLF） ---------- */
   function parseCSV(text) {
     var rows = [];
@@ -475,6 +496,12 @@
     // 重渲染以更新筛选条计数，并在标记筛选生效时把该行移出列表
     render();
   });
+
+  $("themeToggle").addEventListener("click", function () {
+    applyTheme(currentTheme() === "light" ? "dark" : "light", true);
+  });
+  // 与内联脚本保持一致：图标随当前主题
+  applyTheme(currentTheme(), false);
 
   $("resetMarks").addEventListener("click", function () {
     if (!countMarkedAny()) { showToast("还没有任何标记"); return; }

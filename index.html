@@ -6,6 +6,18 @@
 <title>Dev Terminology · 程序员沟通术语库</title>
 <meta name="description" content="按领域分类的程序员沟通术语库：协作黑话、前端、交互组件、自适配、后端、一致性、部署、数据库、网络、安全。">
 <link rel="stylesheet" href="assets/style.css">
+<script>
+  /* 首屏前定主题，避免闪白：优先 localStorage，其次跟随系统 */
+  (function () {
+    try {
+      var t = localStorage.getItem("devterm.theme.v1");
+      if (!t) {
+        t = (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark";
+      }
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) { /* 隐私模式下忽略 */ }
+  })();
+</script>
 </head>
 <body>
 <header class="topbar">
@@ -22,6 +34,7 @@
       <cite class="slogan-author">—— 维特根斯坦</cite>
     </div>
     <div class="topbar-stats" id="stats"></div>
+    <button class="theme-toggle" id="themeToggle" type="button" title="切换到浅色主题" aria-label="切换深色 / 浅色主题">☾</button>
   </div>
 </header>
 
