@@ -4,7 +4,7 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（25 个领域 / 1477 条术语）
+## 领域划分（25 个领域 / 1499 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
@@ -20,7 +20,7 @@
 | 前端领域 | 自适配与布局 | `data/adaptive-layout.csv` | 40 |
 | 后端与基础设施 | 后端与服务 | `data/backend.csv` | 90 |
 | 后端与基础设施 | 一致性与分布式 | `data/consistency.csv` | 48 |
-| 后端与基础设施 | 部署与 DevOps | `data/deployment.csv` | 57 |
+| 后端与基础设施 | 部署与 DevOps | `data/deployment.csv` | 79 |
 | 后端与基础设施 | 数据库 | `data/database.csv` | 54 |
 | 后端与基础设施 | 网络与协议 | `data/network.csv` | 61 |
 | 后端与基础设施 | 安全 | `data/security.csv` | 72 |

@@ -101,7 +101,7 @@
     "group": "后端与基础设施",
     "desc": "CI/CD、发布策略、基础设施与故障治理术语",
     "file": "deployment.csv",
-    "count": 57
+    "count": 79
   },
   {
     "id": "database",
