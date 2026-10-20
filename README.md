@@ -4,7 +4,7 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（23 个领域 / 1378 条术语）
+## 领域划分（25 个领域 / 1477 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
@@ -31,6 +31,8 @@
 | 图表与可视化 | 图表与可视化 | `data/charts-viz.csv` | 76 |
 | 运营与增长 | 用户运营 | `data/user-ops.csv` | 112 |
 | 运营与增长 | 广告与变现 | `data/ads.csv` | 160 |
+| 金融与经济 | 投资与交易 | `data/investing.csv` | 65 |
+| 金融与经济 | 经济与金融 | `data/macro-econ.csv` | 34 |
 
 ## 数据格式
 
@@ -72,6 +74,7 @@ python3 scripts/build_data.py
 - `scripts/data_collab.py` —— 协作沟通、产品与设计
 - `scripts/data_pm.py` —— 项目管理
 - `scripts/data_growth.py` —— 用户运营、广告与变现
+- `scripts/data_finance.py` —— 投资与交易、经济与金融
 - `scripts/data_git.py` —— Git 与版本管理、测试与质量
 - `scripts/data_frontend.py` —— 前端 5 个领域
 - `scripts/data_backend.py` —— 后端与基础设施 6 个领域
