@@ -10,6 +10,7 @@
     current: "all",     // 当前领域 id 或 "all"
     query: "",
     category: "all",
+    mark: "all",        // 标记筛选: all | starred | mastered | unmarked
   };
 
   var $ = function (id) { return document.getElementById(id); };
@@ -17,15 +18,14 @@
 
   /* ---------- 标记（★ 加星 / ✓ 已掌握）· localStorage 持久化 ---------- */
   var LS_KEY = "devterm.marks.v1";
-  var MARK_VIEWS = ["starred", "mastered", "unmarked"];
-  var MARK_META = {
-    starred:  { title: "★ 已加星", desc: "跨领域汇总你加星的术语，可继续用搜索与分类缩小范围" },
-    mastered: { title: "✓ 已掌握", desc: "跨领域汇总你标记为已掌握的术语" },
-    unmarked: { title: "○ 未标记", desc: "既未加星也未标记掌握的术语，适合继续扫盲" },
-  };
+  var MARK_FILTERS = [
+    { id: "all", label: "全部", cls: "" },
+    { id: "starred", label: "★ 已加星", cls: "mk-star" },
+    { id: "mastered", label: "✓ 已掌握", cls: "mk-done" },
+    { id: "unmarked", label: "○ 未标记", cls: "" },
+  ];
   var marks = {}; // key = "<domain>::<term>" -> { s:1, m:1 }
 
-  function isMarkView(id) { return MARK_VIEWS.indexOf(id) !== -1; }
   function markKey(item) { return item.domain + "::" + item.term; }
   function getMark(key) { return marks[key] || {}; }
 
@@ -74,15 +74,16 @@
       '<span class="mk-pct">掌握 ' + pct + "%</span>";
   }
 
-  function setNavCount(id, n) {
-    var el = document.querySelector('.nav-item[data-id="' + id + '"] .count');
-    if (el) el.textContent = n;
-  }
-
-  function updateNavCounts() {
-    setNavCount("starred", countMark("s"));
-    setNavCount("mastered", countMark("m"));
-    setNavCount("unmarked", Math.max(0, totalTerms() - countMarkedAny()));
+  // 在当前范围（某个领域或全部）内统计各标记的数量
+  function markCounts(items) {
+    var c = { all: items.length, starred: 0, mastered: 0, unmarked: 0 };
+    items.forEach(function (it) {
+      var m = getMark(markKey(it));
+      if (m.s) c.starred++;
+      if (m.m) c.mastered++;
+      if (!m.s && !m.m) c.unmarked++;
+    });
+    return c;
   }
 
   /* ---------- CSV 解析（支持引号包裹、"" 转义、CRLF） ---------- */
@@ -169,8 +170,7 @@
     tbody.innerHTML = "";
 
     var jobs;
-    if (state.current === "all" || isMarkView(state.current)) {
-      // 标记视图跨领域，需要全部数据
+    if (state.current === "all") {
       jobs = state.domains.map(function (d) { return loadDomain(d.id); });
     } else {
       jobs = [loadDomain(state.current)];
@@ -186,27 +186,24 @@
   /* ---------- 过滤 ---------- */
   function currentItems() {
     var items = [];
-    if (state.current === "all" || isMarkView(state.current)) {
+    if (state.current === "all") {
       state.domains.forEach(function (d) {
         items = items.concat(state.cache[d.id] || []);
       });
     } else {
       items = state.cache[state.current] || [];
     }
-    if (isMarkView(state.current)) {
-      var v = state.current;
-      items = items.filter(function (it) {
-        var m = getMark(markKey(it));
-        if (v === "starred") return !!m.s;
-        if (v === "mastered") return !!m.m;
-        return !m.s && !m.m;
-      });
-    }
     return items;
   }
 
   function matches(item) {
     if (state.category !== "all" && item.category !== state.category) return false;
+    if (state.mark !== "all") {
+      var m = getMark(markKey(item));
+      if (state.mark === "starred") { if (!m.s) return false; }
+      else if (state.mark === "mastered") { if (!m.m) return false; }
+      else if (m.s || m.m) return false; // unmarked
+    }
     var q = state.query.trim().toLowerCase();
     if (!q) return true;
     var hay = (item.term + " " + item.en + " " + item.definition + " " + item.scenario + " " + item.category + " " + item.domainName + " " + item.related.join(" ")).toLowerCase();
@@ -232,11 +229,6 @@
     html += '<div class="nav-group-title">总览</div>';
     html += navItem("all", "全部术语", total);
 
-    html += '<div class="nav-group-title">我的标记</div>';
-    html += navItem("starred", "★ 已加星", countMark("s"));
-    html += navItem("mastered", "✓ 已掌握", countMark("m"));
-    html += navItem("unmarked", "○ 未标记", Math.max(0, total - countMarkedAny()));
-
     var groups = {};
     var order = [];
     state.domains.forEach(function (d) {
@@ -257,6 +249,7 @@
         if (id === state.current) return;
         state.current = id;
         state.category = "all";
+        state.mark = "all";
         state.query = "";
         $("search").value = "";
         location.hash = id === "all" ? "" : id;
@@ -282,11 +275,7 @@
   function renderHead() {
     var items = currentItems();
     var shown = items.filter(matches);
-    if (isMarkView(state.current)) {
-      var mm = MARK_META[state.current];
-      $("domainTitle").textContent = mm.title;
-      $("domainDesc").textContent = mm.desc;
-    } else if (state.current === "all") {
+    if (state.current === "all") {
       $("domainTitle").textContent = "全部术语";
       $("domainDesc").textContent = "跨 " + state.domains.length + " 个领域的完整术语集合，支持关键词搜索";
     } else {
@@ -300,6 +289,27 @@
     }
     $("resultCount").innerHTML = "显示 <b>" + shown.length + "</b> / " + items.length + " 条";
     renderCategories(items);
+    renderMarkBar(items);
+  }
+
+  /* 标记筛选条：位于分类之下，与分类 / 搜索叠加生效 */
+  function renderMarkBar(items) {
+    var bar = $("markBar");
+    var c = markCounts(items);
+    var html = '<span class="mark-bar-label">标记</span>';
+    MARK_FILTERS.forEach(function (f) {
+      html += '<button type="button" class="chip mark-chip ' + f.cls +
+        (state.mark === f.id ? " active" : "") + '" data-mark="' + f.id + '">' +
+        f.label + '<span class="n">' + c[f.id] + "</span></button>";
+    });
+    bar.innerHTML = html;
+
+    Array.prototype.forEach.call(bar.querySelectorAll(".chip"), function (chip) {
+      chip.addEventListener("click", function () {
+        state.mark = chip.getAttribute("data-mark");
+        render();
+      });
+    });
   }
 
   function renderCategories(items) {
@@ -416,18 +426,13 @@
     toastTimer = setTimeout(function () { t.hidden = true; }, 1600);
   }
 
-  /* ---------- hash 路由（支持浏览器前进/后退与分享链接） ---------- */
-  function isKnownView(id) {
-    if (!id) return false;
-    return id === "all" || isMarkView(id) || state.domains.some(function (d) { return d.id === id; });
-  }
-
-  window.addEventListener("hashchange", function () {
+  /* ---------- hash 路由（支持浏览器前进/后退与分享链接） ---------- */  window.addEventListener("hashchange", function () {
     var h = location.hash.replace("#", "");
-    var id = isKnownView(h) ? h : "all";
+    var id = (h && state.domains.some(function (d) { return d.id === h; })) ? h : "all";
     if (id === state.current) return;
     state.current = id;
     state.category = "all";
+    state.mark = "all";
     state.query = "";
     $("search").value = "";
     syncNavActive();
@@ -447,7 +452,9 @@
   /* ---------- 启动 ---------- */
   function initFromHash() {
     var h = location.hash.replace("#", "");
-    if (isKnownView(h)) state.current = h;
+    if (h && state.domains.some(function (d) { return d.id === h; })) {
+      state.current = h;
+    }
   }
 
   /* ---------- 标记交互（事件委托） ---------- */
@@ -465,9 +472,8 @@
     tr.classList.toggle("is-starred", !!m.s);
     tr.classList.toggle("is-mastered", !!m.m);
     updateMarkStats();
-    updateNavCounts();
-    // 在标记视图下，取消标记后该行应移出列表
-    if (isMarkView(state.current)) render();
+    // 重渲染以更新筛选条计数，并在标记筛选生效时把该行移出列表
+    render();
   });
 
   $("resetMarks").addEventListener("click", function () {
@@ -476,7 +482,6 @@
     marks = {};
     saveMarks();
     updateMarkStats();
-    updateNavCounts();
     render();
     showToast("已清空全部标记");
   });
