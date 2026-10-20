@@ -14,12 +14,13 @@ from data_git import DOMAINS as D_GIT
 from data_frontend import DOMAINS as D_FRONTEND
 from data_backend import DOMAINS as D_BACKEND
 from data_ai import DOMAINS as D_AI
+from data_erp import DOMAINS as D_ERP
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA_DIR = os.path.join(ROOT, "data")
 HEADER = ["term", "en", "category", "definition", "scenario", "related"]
 
-DOMAIN_ORDER = D_COLLAB + D_GIT + D_FRONTEND + D_BACKEND + D_AI
+DOMAIN_ORDER = D_COLLAB + D_GIT + D_FRONTEND + D_BACKEND + D_AI + D_ERP
 
 
 def build():
