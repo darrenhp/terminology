@@ -15,6 +15,76 @@
   var $ = function (id) { return document.getElementById(id); };
   var tbody = $("tbody");
 
+  /* ---------- 标记（★ 加星 / ✓ 已掌握）· localStorage 持久化 ---------- */
+  var LS_KEY = "devterm.marks.v1";
+  var MARK_VIEWS = ["starred", "mastered", "unmarked"];
+  var MARK_META = {
+    starred:  { title: "★ 已加星", desc: "跨领域汇总你加星的术语，可继续用搜索与分类缩小范围" },
+    mastered: { title: "✓ 已掌握", desc: "跨领域汇总你标记为已掌握的术语" },
+    unmarked: { title: "○ 未标记", desc: "既未加星也未标记掌握的术语，适合继续扫盲" },
+  };
+  var marks = {}; // key = "<domain>::<term>" -> { s:1, m:1 }
+
+  function isMarkView(id) { return MARK_VIEWS.indexOf(id) !== -1; }
+  function markKey(item) { return item.domain + "::" + item.term; }
+  function getMark(key) { return marks[key] || {}; }
+
+  function loadMarks() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(LS_KEY));
+      marks = (raw && typeof raw === "object") ? raw : {};
+    } catch (e) { marks = {}; }
+  }
+
+  function saveMarks() {
+    try { localStorage.setItem(LS_KEY, JSON.stringify(marks)); }
+    catch (e) { showToast("标记保存失败：本地存储不可用"); }
+  }
+
+  function toggleMark(key, field) {
+    var m = marks[key] || {};
+    if (m[field]) delete m[field]; else m[field] = 1;
+    if (m.s || m.m) marks[key] = m; else delete marks[key];
+    saveMarks();
+  }
+
+  function countMark(field) {
+    var n = 0;
+    for (var k in marks) { if (marks[k] && marks[k][field]) n++; }
+    return n;
+  }
+
+  function countMarkedAny() {
+    var n = 0;
+    for (var k in marks) { var m = marks[k]; if (m && (m.s || m.m)) n++; }
+    return n;
+  }
+
+  function totalTerms() {
+    return state.domains.reduce(function (s, d) { return s + d.count; }, 0);
+  }
+
+  function updateMarkStats() {
+    var el = $("markStats");
+    if (!el) return;
+    var total = totalTerms();
+    var pct = total ? Math.round(countMark("m") / total * 1000) / 10 : 0;
+    el.innerHTML = '<b class="mk-star">★ ' + countMark("s") + "</b>" +
+      '<b class="mk-done">✓ ' + countMark("m") + "</b>" +
+      '<span class="mk-pct">掌握 ' + pct + "%</span>";
+  }
+
+  function setNavCount(id, n) {
+    var el = document.querySelector('.nav-item[data-id="' + id + '"] .count');
+    if (el) el.textContent = n;
+  }
+
+  function updateNavCounts() {
+    setNavCount("starred", countMark("s"));
+    setNavCount("mastered", countMark("m"));
+    setNavCount("unmarked", Math.max(0, totalTerms() - countMarkedAny()));
+  }
+
   /* ---------- CSV 解析（支持引号包裹、"" 转义、CRLF） ---------- */
   function parseCSV(text) {
     var rows = [];
@@ -99,7 +169,8 @@
     tbody.innerHTML = "";
 
     var jobs;
-    if (state.current === "all") {
+    if (state.current === "all" || isMarkView(state.current)) {
+      // 标记视图跨领域，需要全部数据
       jobs = state.domains.map(function (d) { return loadDomain(d.id); });
     } else {
       jobs = [loadDomain(state.current)];
@@ -115,12 +186,21 @@
   /* ---------- 过滤 ---------- */
   function currentItems() {
     var items = [];
-    if (state.current === "all") {
+    if (state.current === "all" || isMarkView(state.current)) {
       state.domains.forEach(function (d) {
         items = items.concat(state.cache[d.id] || []);
       });
     } else {
       items = state.cache[state.current] || [];
+    }
+    if (isMarkView(state.current)) {
+      var v = state.current;
+      items = items.filter(function (it) {
+        var m = getMark(markKey(it));
+        if (v === "starred") return !!m.s;
+        if (v === "mastered") return !!m.m;
+        return !m.s && !m.m;
+      });
     }
     return items;
   }
@@ -139,7 +219,9 @@
     $("stats").innerHTML =
       '<span class="stat-pill"><b>' + state.domains.length + '</b>个领域</span>' +
       '<span class="stat-pill"><b>' + total + '</b>条术语</span>' +
+      '<span class="stat-pill" id="markStats"></span>' +
       '<span class="stat-pill">数据格式 <b>CSV</b></span>';
+    updateMarkStats();
   }
 
   function renderNav() {
@@ -149,6 +231,11 @@
 
     html += '<div class="nav-group-title">总览</div>';
     html += navItem("all", "全部术语", total);
+
+    html += '<div class="nav-group-title">我的标记</div>';
+    html += navItem("starred", "★ 已加星", countMark("s"));
+    html += navItem("mastered", "✓ 已掌握", countMark("m"));
+    html += navItem("unmarked", "○ 未标记", Math.max(0, total - countMarkedAny()));
 
     var groups = {};
     var order = [];
@@ -195,7 +282,11 @@
   function renderHead() {
     var items = currentItems();
     var shown = items.filter(matches);
-    if (state.current === "all") {
+    if (isMarkView(state.current)) {
+      var mm = MARK_META[state.current];
+      $("domainTitle").textContent = mm.title;
+      $("domainDesc").textContent = mm.desc;
+    } else if (state.current === "all") {
       $("domainTitle").textContent = "全部术语";
       $("domainDesc").textContent = "跨 " + state.domains.length + " 个领域的完整术语集合，支持关键词搜索";
     } else {
@@ -232,6 +323,12 @@
     });
   }
 
+  function markBtn(kind, key, field, on, glyph, title) {
+    return '<button type="button" class="mark-btn ' + kind + (on ? " on" : "") +
+      '" data-k="' + key + '" data-f="' + field +
+      '" aria-pressed="' + (on ? "true" : "false") + '" title="' + title + '">' + glyph + "</button>";
+  }
+
   function renderTable(items) {
     var shown = items.filter(matches);
     $("empty").hidden = shown.length > 0;
@@ -245,7 +342,17 @@
       var domainCell = showDomain
         ? '<td class="cell-domain"><span class="domain-tag">' + escapeHTML(it.domainName) + "</span></td>"
         : "";
-      html += "<tr>" +
+      var key = escapeHTML(markKey(it));
+      var m = getMark(markKey(it));
+      var rowCls = [];
+      if (m.s) rowCls.push("is-starred");
+      if (m.m) rowCls.push("is-mastered");
+      var markCell = '<td class="cell-mark">' +
+        markBtn("star", key, "s", !!m.s, "★", "加星：重点复习") +
+        markBtn("done", key, "m", !!m.m, "✓", "标记：已掌握") +
+        "</td>";
+      html += '<tr class="' + rowCls.join(" ") + '">' +
+        markCell +
         '<td><span class="term-name" title="点击复制">' + escapeHTML(it.term) + "</span></td>" +
         domainCell +
         '<td><span class="term-en">' + escapeHTML(it.en) + "</span></td>" +
@@ -310,9 +417,14 @@
   }
 
   /* ---------- hash 路由（支持浏览器前进/后退与分享链接） ---------- */
+  function isKnownView(id) {
+    if (!id) return false;
+    return id === "all" || isMarkView(id) || state.domains.some(function (d) { return d.id === id; });
+  }
+
   window.addEventListener("hashchange", function () {
     var h = location.hash.replace("#", "");
-    var id = (h && state.domains.some(function (d) { return d.id === h; })) ? h : "all";
+    var id = isKnownView(h) ? h : "all";
     if (id === state.current) return;
     state.current = id;
     state.category = "all";
@@ -335,21 +447,51 @@
   /* ---------- 启动 ---------- */
   function initFromHash() {
     var h = location.hash.replace("#", "");
-    if (h && state.domains.some(function (d) { return d.id === h; })) {
-      state.current = h;
-    }
+    if (isKnownView(h)) state.current = h;
   }
+
+  /* ---------- 标记交互（事件委托） ---------- */
+  tbody.addEventListener("click", function (e) {
+    var el = e.target;
+    var btn = (el && el.closest) ? el.closest(".mark-btn") : null;
+    if (!btn) return;
+    var key = btn.getAttribute("data-k");
+    var field = btn.getAttribute("data-f");
+    toggleMark(key, field);
+    var m = getMark(key);
+    btn.classList.toggle("on", !!m[field]);
+    btn.setAttribute("aria-pressed", m[field] ? "true" : "false");
+    var tr = btn.parentNode.parentNode;
+    tr.classList.toggle("is-starred", !!m.s);
+    tr.classList.toggle("is-mastered", !!m.m);
+    updateMarkStats();
+    updateNavCounts();
+    // 在标记视图下，取消标记后该行应移出列表
+    if (isMarkView(state.current)) render();
+  });
+
+  $("resetMarks").addEventListener("click", function () {
+    if (!countMarkedAny()) { showToast("还没有任何标记"); return; }
+    if (!window.confirm("确定清空全部加星 / 已掌握标记？该操作不可撤销。")) return;
+    marks = {};
+    saveMarks();
+    updateMarkStats();
+    updateNavCounts();
+    render();
+    showToast("已清空全部标记");
+  });
 
   fetch("data/domains.json").then(function (res) {
     if (!res.ok) throw new Error("HTTP " + res.status);
     return res.json();
   }).then(function (domains) {
     state.domains = domains;
+    loadMarks();
     initFromHash();
     renderStats();
     renderNav();
     loadCurrent();
   }).catch(function (err) {
-    tbody.innerHTML = '<tr><td colspan="6" class="loading">索引加载失败: ' + escapeHTML(err.message) + "</td></tr>";
+    tbody.innerHTML = '<tr><td colspan="7" class="loading">索引加载失败: ' + escapeHTML(err.message) + "</td></tr>";
   });
 })();

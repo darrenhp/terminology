@@ -35,6 +35,8 @@
     <footer class="sidebar-footer">
       <p>数据源：<code>data/*.csv</code></p>
       <p>页面在浏览器端下载并解析 CSV 展示</p>
+      <p>加星 / 已掌握标记存在本机 <code>localStorage</code>，不会上传</p>
+      <button class="reset-btn" id="resetMarks" type="button">清空全部标记</button>
     </footer>
   </aside>
 
@@ -51,6 +53,7 @@
       <table class="term-table">
         <thead>
           <tr>
+            <th class="col-mark">标记</th>
             <th class="col-term">术语</th>
             <th class="col-domain" id="thDomain" hidden>领域</th>
             <th class="col-en">English</th>
