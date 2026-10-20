@@ -13,7 +13,7 @@
     "group": "研发协作",
     "desc": "与产品经理、设计师沟通时的高频术语，覆盖需求文档、设计产出、数据指标与项目流程",
     "file": "product-design.csv",
-    "count": 45
+    "count": 55
   },
   {
     "id": "git",
@@ -77,7 +77,7 @@
     "group": "后端与基础设施",
     "desc": "后端架构风格、服务治理、数据缓存与性能指标术语",
     "file": "backend.csv",
-    "count": 59
+    "count": 70
   },
   {
     "id": "consistency",
