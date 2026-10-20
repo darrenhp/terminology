@@ -16,12 +16,12 @@
   var $ = function (id) { return document.getElementById(id); };
   var tbody = $("tbody");
 
-  /* ---------- 标记（★ 加星 / ✓ 已掌握）· localStorage 持久化 ---------- */
+  /* ---------- 标记（★ 加星 / ✕ 已掌握）· localStorage 持久化 ---------- */
   var LS_KEY = "devterm.marks.v1";
   var MARK_FILTERS = [
     { id: "all", label: "全部", cls: "" },
     { id: "starred", label: "★ 已加星", cls: "mk-star" },
-    { id: "mastered", label: "✓ 已掌握", cls: "mk-done" },
+    { id: "mastered", label: "✕ 已掌握", cls: "mk-done" },
     { id: "unmarked", label: "○ 未标记", cls: "" },
   ];
   var marks = {}; // key = "<domain>::<term>" -> { s:1, m:1 }
@@ -70,7 +70,7 @@
     var total = totalTerms();
     var pct = total ? Math.round(countMark("m") / total * 1000) / 10 : 0;
     el.innerHTML = '<b class="mk-star">★ ' + countMark("s") + "</b>" +
-      '<b class="mk-done">✓ ' + countMark("m") + "</b>" +
+      '<b class="mk-done">✕ ' + countMark("m") + "</b>" +
       '<span class="mk-pct">掌握 ' + pct + "%</span>";
   }
 
@@ -359,7 +359,7 @@
       if (m.m) rowCls.push("is-mastered");
       var markCell = '<td class="cell-mark">' +
         markBtn("star", key, "s", !!m.s, "★", "加星：重点复习") +
-        markBtn("done", key, "m", !!m.m, "✓", "标记：已掌握") +
+        markBtn("done", key, "m", !!m.m, "✕", "标记：已掌握（划掉，再点取消）") +
         "</td>";
       html += '<tr class="' + rowCls.join(" ") + '">' +
         markCell +

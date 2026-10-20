@@ -80,7 +80,7 @@ body {
 }
 .stat-pill b { color: var(--accent); font-family: var(--mono); font-weight: 600; margin-right: 2px; }
 .stat-pill b.mk-star { color: var(--amber); margin-left: 6px; }
-.stat-pill b.mk-done { color: var(--green); margin-left: 6px; }
+.stat-pill b.mk-done { color: var(--red); margin-left: 6px; }
 .stat-pill .mk-pct { color: var(--text-faint); margin-left: 6px; }
 
 /* ---------- Slogan（顶栏居中） ---------- */
@@ -302,9 +302,9 @@ body {
   background: rgba(210, 153, 34, 0.12);
 }
 .chip.mark-chip.mk-done.active {
-  color: var(--green);
-  border-color: rgba(63, 185, 80, 0.6);
-  background: rgba(63, 185, 80, 0.12);
+  color: var(--red);
+  border-color: rgba(248, 81, 73, 0.6);
+  background: rgba(248, 81, 73, 0.12);
 }
 
 /* ---------- 表格 ---------- */
@@ -336,7 +336,7 @@ body {
 .term-table tbody tr { transition: background 0.1s; }
 .term-table tbody tr:hover { background: var(--panel-2); }
 
-/* ---------- 标记列（★ 加星 / ✓ 已掌握） ---------- */
+/* ---------- 标记列（★ 加星 / ✕ 已掌握·划掉） ---------- */
 .col-mark { width: 6%; min-width: 88px; }
 .cell-mark { white-space: nowrap; }
 
@@ -364,14 +364,14 @@ body {
   background: rgba(210, 153, 34, 0.12);
 }
 .mark-btn.done.on {
-  color: var(--green);
-  border-color: rgba(63, 185, 80, 0.5);
-  background: rgba(63, 185, 80, 0.12);
+  color: var(--red);
+  border-color: rgba(248, 81, 73, 0.5);
+  background: rgba(248, 81, 73, 0.12);
 }
 
 .term-table tbody tr.is-starred { background: rgba(210, 153, 34, 0.05); }
-.term-table tbody tr.is-mastered { background: rgba(63, 185, 80, 0.06); }
-.term-table tbody tr.is-mastered .term-name { color: var(--text-dim); }
+.term-table tbody tr.is-mastered { background: rgba(248, 81, 73, 0.05); }
+.term-table tbody tr.is-mastered .term-name { color: var(--text-faint); text-decoration: line-through; }
 .term-table tbody tr.is-starred:hover,
 .term-table tbody tr.is-mastered:hover { background: var(--panel-2); }
 
