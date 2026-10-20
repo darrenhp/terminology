@@ -4,7 +4,7 @@
 
 **在线访问**: https://darrenhp.github.io/terminology/
 
-## 领域划分（23 个领域 / 1328 条术语）
+## 领域划分（23 个领域 / 1378 条术语）
 
 | 分组 | 领域 | 文件 | 条数 |
 | --- | --- | --- | --- |
@@ -29,8 +29,8 @@
 | 企业应用 | ERP 与企业应用 | `data/erp.csv` | 91 |
 | 企业应用 | WFM 与劳动力管理 | `data/wfm.csv` | 25 |
 | 图表与可视化 | 图表与可视化 | `data/charts-viz.csv` | 76 |
-| 运营与增长 | 用户运营 | `data/user-ops.csv` | 90 |
-| 运营与增长 | 广告与变现 | `data/ads.csv` | 132 |
+| 运营与增长 | 用户运营 | `data/user-ops.csv` | 112 |
+| 运营与增长 | 广告与变现 | `data/ads.csv` | 160 |
 
 ## 数据格式
 
