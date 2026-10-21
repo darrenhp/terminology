@@ -1,49 +1,51 @@
-term,en,category,definition,scenario,related
-CAP,CAP Theorem,一致性模型,分布式系统只能同时满足三者之二,CAP 不是三选二，是权衡,"分区容错,一致性"
-强一致性,Strong Consistency,一致性模型,任何时刻读到的都是最新写入,转账要强一致,"最终一致性,弱一致"
-最终一致性,Eventual Consistency,一致性模型,停止写入后数据最终会收敛一致,缓存同步用最终一致性,"强一致性,收敛"
-弱一致性,Weak Consistency,一致性模型,写入后不保证何时可见的一致性,弱一致换性能,"最终一致性,强一致"
-因果一致性,Causal Consistency,一致性模型,有因果关系的操作保持顺序可见,因果一致比最终一致强,"顺序一致性,一致性"
-顺序一致性,Sequential Consistency,一致性模型,所有进程看到一致的操作顺序,顺序一致保证全局有序,"线性一致,因果一致"
-线性一致性,Linearizability,一致性模型,操作看起来像在某一瞬间原子完成,线性一致是最强的单副本语义,"顺序一致,强一致"
-幂等性,Idempotency,并发控制,重复执行不改变结果的特性,重试的前提是幂等,"重试,去重"
-事务,Transaction,并发控制,一组要么全成要么全败的操作,扣库存和建订单放一个事务,"ACID,提交"
-ACID,ACID,并发控制,原子性、一致性、隔离性、持久性,关系库保证 ACID,"事务,隔离级别"
-隔离级别,Isolation Level,并发控制,事务间可见程度的等级设定,默认隔离级别是读已提交,"脏读,幻读"
-脏读,Dirty Read,并发控制,读到其他事务未提交的修改,脏读在未提交读下发生,"隔离级别,幻读"
-不可重复读,Non-Repeatable Read,并发控制,同一事务内两次读结果不同,升级隔离级别治不可重复读,"幻读,隔离级别"
-幻读,Phantom Read,并发控制,同一查询两次返回的行集合不同,范围查询怕幻读,"不可重复读,间隙锁"
-丢失更新,Lost Update,并发控制,两个事务覆盖彼此的修改,悲观锁防丢失更新,"乐观锁,并发"
-乐观锁,Optimistic Lock,并发控制,提交时校验版本，冲突则重试,乐观锁适合冲突少的场景,"悲观锁,版本号"
-悲观锁,Pessimistic Lock,并发控制,操作前先加锁独占资源,悲观锁适合写多读少,"乐观锁,行锁"
-MVCC,Multi-Version Concurrency Control,并发控制,用多版本数据实现读写互不阻塞,InnoDB 靠 MVCC 做快照读,"快照读,隔离级别"
-2PC,Two-Phase Commit,分布式事务,准备加提交两阶段保证原子提交,2PC 有同步阻塞问题,"3PC,分布式事务"
-3PC,Three-Phase Commit,分布式事务,在 2PC 基础上加预提交降低阻塞,3PC 解决 2PC 的部分阻塞,"2PC,CanCommit"
-TCC,Try-Confirm-Cancel,分布式事务,业务层实现预留、确认、取消三阶段,TCC 性能比 2PC 好,"Saga,补偿事务"
-Saga,Saga Pattern,分布式事务,长事务拆成有序本地事务加补偿,Saga 适合长流程业务,"补偿事务,TCC"
-补偿事务,Compensating Transaction,分布式事务,用反向操作撤销已执行步骤,补偿失败要能重试和告警,"Saga,TCC"
-共识算法,Consensus Algorithm,共识与协调,多个节点就某个值达成一致的算法,Raft 比 Paxos 好懂,"Paxos,Raft"
-Paxos,Paxos,共识与协调,经典的分布式共识算法家族,Paxos 工程上难落地,"Raft,共识算法"
-Raft,Raft,共识与协调,以易理解著称的共识算法,etcd 用 Raft,"Paxos,选举"
-领导者选举,Leader Election,共识与协调,集群选出唯一主节点协调写入,Raft 靠选举产生 Leader,"心跳,任期"
-心跳,Heartbeat,共识与协调,节点间定时保活与状态探测,心跳超时就触发选举,"选举,健康检查"
-副本,Replica,共识与协调,数据的冗余拷贝节点,三副本保可用,"主从,冗余"
-Quorum,Quorum / 法定人数,共识与协调,多数节点同意即生效的决策机制,写 Quorum 过半才返回成功,"多数派,副本"
-脑裂,Split Brain,共识与协调,集群分裂出现多个主节点的故障,加 fencing 防脑裂,"分区,多数派"
-对账,Reconciliation,并发控制,定期比对两边数据找出差异,支付对账每天跑,"数据校验,差异"
-去重,Deduplication,并发控制,消除重复数据或重复请求,消费端按幂等键去重,"幂等,唯一键"
-乱序,Out-of-Order,并发控制,消息到达顺序与发送顺序不一致,MQ 乱序要按序号重排,"消息队列,顺序"
-缓存一致性,Cache Coherence,并发控制,缓存与源数据保持一致的策略,先更新 DB 再删缓存,"最终一致,延迟双删"
-延迟双删,Delayed Double Delete,并发控制,更新后删缓存、延迟再删一次,延迟双删缓解脏缓存,"缓存一致性,最终一致"
-读写放大,Read/Write Amplification,并发控制,一次逻辑操作引发多次物理 IO,LSM 树写放大明显,"存储,优化"
-事件溯源,Event Sourcing,并发控制,以事件流而非状态快照持久化,事件溯源可完整重放历史,"CQRS,审计"
-CQRS,Command Query Responsibility Segregation,并发控制,读写模型分离的架构模式,CQRS 常配事件溯源,"读写分离,事件溯源"
-数据校验,Data Validation,并发控制,核对数据正确性与完整性的机制,迁移后全量数据校验,"对账,脏数据"
-BASE,"BASE (Basically Available, Soft state, Eventual)",一致性模型,基本可用加最终一致的分布式折中理论,互联网业务普遍接受 BASE 语义,"CAP,最终一致性"
-租约,Lease,共识与协调,带超时时间的授权凭证，到期自动失效,主节点切换靠租约超时兜底,"心跳,领导者选举"
-一致性哈希,Consistent Hashing,共识与协调,节点增减时仅迁移少量数据的分片算法,缓存集群扩容用一致性哈希，别全量迁移,"分片,副本"
-CRDT,CRDT (Conflict-free Replicated Data Type),并发控制,多端并发修改可自动合并无冲突的数据结构,协同文档的多端同步用 CRDT,"最终一致性,事件溯源"
-向量时钟,Vector Clock,并发控制,记录事件因果先后关系的逻辑时钟,用向量时钟判断两个写是否并发,"因果一致性,乱序"
-WAL,Write-Ahead Log,共识与协调,先写日志再改数据以保证崩溃可恢复的机制,写放大先看 WAL 刷盘策略,"快照,LSM-Tree"
-LSM-Tree,Log-Structured Merge Tree,并发控制,先内存写再批量刷盘的写优化存储结构,写入为主的场景选 LSM 存储引擎,"WAL,B+ 树"
-本地消息表,Local Message Table,分布式事务,业务与消息同库落表再异步投递的最终一致方案,不想引分布式事务框架，用本地消息表过渡,"Saga,补偿事务"
+term,en,category,definition,scenario,related,pitfall
+CAP,CAP Theorem,一致性模型,分布式系统只能同时满足三者之二,CAP 不是三选二，是权衡,"分区容错,一致性",
+强一致性,Strong Consistency,一致性模型,任何时刻读到的都是最新写入,转账要强一致,"最终一致性,弱一致",
+最终一致性,Eventual Consistency,一致性模型,停止写入后数据最终会收敛一致,缓存同步用最终一致性,"强一致性,收敛",
+弱一致性,Weak Consistency,一致性模型,写入后不保证何时可见的一致性,弱一致换性能,"最终一致性,强一致",
+因果一致性,Causal Consistency,一致性模型,有因果关系的操作保持顺序可见,因果一致比最终一致强,"顺序一致性,一致性",
+顺序一致性,Sequential Consistency,一致性模型,所有进程看到一致的操作顺序,顺序一致保证全局有序,"线性一致,因果一致",
+线性一致性,Linearizability,一致性模型,操作看起来像在某一瞬间原子完成,线性一致是最强的单副本语义,"顺序一致,强一致",
+幂等性,Idempotency,并发控制,重复执行不改变结果的特性,重试的前提是幂等,"重试,去重",
+事务,Transaction,并发控制,一组要么全成要么全败的操作,扣库存和建订单放一个事务,"ACID,提交",
+ACID,ACID,并发控制,原子性、一致性、隔离性、持久性,关系库保证 ACID,"事务,隔离级别",
+隔离级别,Isolation Level,并发控制,事务间可见程度的等级设定,默认隔离级别是读已提交,"脏读,幻读",
+脏读,Dirty Read,并发控制,读到其他事务未提交的修改,脏读在未提交读下发生,"隔离级别,幻读",
+不可重复读,Non-Repeatable Read,并发控制,同一事务内两次读结果不同,升级隔离级别治不可重复读,"幻读,隔离级别",
+幻读,Phantom Read,并发控制,同一查询两次返回的行集合不同,范围查询怕幻读,"不可重复读,间隙锁",
+丢失更新,Lost Update,并发控制,两个事务覆盖彼此的修改,悲观锁防丢失更新,"乐观锁,并发",
+乐观锁,Optimistic Lock,并发控制,提交时校验版本，冲突则重试,乐观锁适合冲突少的场景,"悲观锁,版本号",高并发下冲突率高，重试次数要有上限，必要时退化成排队或悲观锁
+悲观锁,Pessimistic Lock,并发控制,操作前先加锁独占资源,悲观锁适合写多读少,"乐观锁,行锁",
+MVCC,Multi-Version Concurrency Control,并发控制,用多版本数据实现读写互不阻塞,InnoDB 靠 MVCC 做快照读,"快照读,隔离级别",
+2PC,Two-Phase Commit,分布式事务,准备加提交两阶段保证原子提交,2PC 有同步阻塞问题,"3PC,分布式事务",
+3PC,Three-Phase Commit,分布式事务,在 2PC 基础上加预提交降低阻塞,3PC 解决 2PC 的部分阻塞,"2PC,CanCommit",
+TCC,Try-Confirm-Cancel,分布式事务,业务层实现预留、确认、取消三阶段,TCC 性能比 2PC 好,"Saga,补偿事务",
+Saga,Saga Pattern,分布式事务,长事务拆成有序本地事务加补偿,Saga 适合长流程业务,"补偿事务,TCC",步骤越多补偿链越长，任何一步补偿失败都会留下半成品数据
+补偿事务,Compensating Transaction,分布式事务,用反向操作撤销已执行步骤,补偿失败要能重试和告警,"Saga,TCC",补偿本身也可能失败，必须可重入并支持重试，否则卡在中间态
+共识算法,Consensus Algorithm,共识与协调,多个节点就某个值达成一致的算法,Raft 比 Paxos 好懂,"Paxos,Raft",
+Paxos,Paxos,共识与协调,经典的分布式共识算法家族,Paxos 工程上难落地,"Raft,共识算法",
+Raft,Raft,共识与协调,以易理解著称的共识算法,etcd 用 Raft,"Paxos,选举",
+领导者选举,Leader Election,共识与协调,集群选出唯一主节点协调写入,Raft 靠选举产生 Leader,"心跳,任期",
+心跳,Heartbeat,共识与协调,节点间定时保活与状态探测,心跳超时就触发选举,"选举,健康检查",
+副本,Replica,共识与协调,数据的冗余拷贝节点,三副本保可用,"主从,冗余",
+Quorum,Quorum / 法定人数,共识与协调,多数节点同意即生效的决策机制,写 Quorum 过半才返回成功,"多数派,副本",
+脑裂,Split Brain,共识与协调,集群分裂出现多个主节点的故障,加 fencing 防脑裂,"分区,多数派",
+对账,Reconciliation,并发控制,定期比对两边数据找出差异,支付对账每天跑,"数据校验,差异",
+去重,Deduplication,并发控制,消除重复数据或重复请求,消费端按幂等键去重,"幂等,唯一键",
+乱序,Out-of-Order,并发控制,消息到达顺序与发送顺序不一致,MQ 乱序要按序号重排,"消息队列,顺序",
+缓存一致性,Cache Coherence,并发控制,缓存与源数据保持一致的策略,先更新 DB 再删缓存,"最终一致,延迟双删",
+延迟双删,Delayed Double Delete,并发控制,更新后删缓存、延迟再删一次,延迟双删缓解脏缓存,"缓存一致性,最终一致",
+读写放大,Read/Write Amplification,并发控制,一次逻辑操作引发多次物理 IO,LSM 树写放大明显,"存储,优化",
+事件溯源,Event Sourcing,并发控制,以事件流而非状态快照持久化,事件溯源可完整重放历史,"CQRS,审计",查询要另建读模型（CQRS），直接回放事件流慢到不可用
+CQRS,Command Query Responsibility Segregation,并发控制,读写模型分离的架构模式,CQRS 常配事件溯源,"读写分离,事件溯源",
+数据校验,Data Validation,并发控制,核对数据正确性与完整性的机制,迁移后全量数据校验,"对账,脏数据",
+BASE,"BASE (Basically Available, Soft state, Eventual)",一致性模型,基本可用加最终一致的分布式折中理论,互联网业务普遍接受 BASE 语义,"CAP,最终一致性",
+租约,Lease,共识与协调,带超时时间的授权凭证，到期自动失效,主节点切换靠租约超时兜底,"心跳,领导者选举",
+一致性哈希,Consistent Hashing,共识与协调,节点增减时仅迁移少量数据的分片算法,缓存集群扩容用一致性哈希，别全量迁移,"分片,副本",
+CRDT,CRDT (Conflict-free Replicated Data Type),并发控制,多端并发修改可自动合并无冲突的数据结构,协同文档的多端同步用 CRDT,"最终一致性,事件溯源",
+向量时钟,Vector Clock,并发控制,记录事件因果先后关系的逻辑时钟,用向量时钟判断两个写是否并发,"因果一致性,乱序",
+WAL,Write-Ahead Log,共识与协调,先写日志再改数据以保证崩溃可恢复的机制,写放大先看 WAL 刷盘策略,"快照,LSM-Tree",
+LSM-Tree,Log-Structured Merge Tree,并发控制,先内存写再批量刷盘的写优化存储结构,写入为主的场景选 LSM 存储引擎,"WAL,B+ 树",
+本地消息表,Local Message Table,分布式事务,业务与消息同库落表再异步投递的最终一致方案,不想引分布式事务框架，用本地消息表过渡,"Saga,补偿事务",
+事务边界,Transaction Boundary,分布式事务,明确哪些写操作必须在同一事务内完成,下单和扣库存要放在同一事务边界里,事务、补偿事务、Saga,事务里调外部 API 会长时间占连接，把连接池拖死
+最终一致,Eventual Consistency,一致性模型,允许短暂不一致、稍后自动收敛的一致模型,跨库同步接受最终一致，只保证最终对得上,一致性、补偿事务、读写分离,必须能回答「多久收敛、冲突怎么解」，否则等于没设计

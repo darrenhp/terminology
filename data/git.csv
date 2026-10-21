@@ -1,25 +1,25 @@
-term,en,category,definition,scenario,related
-仓库,Repository,基本操作,Git 管理代码的基本单位，包含全部历史版本,代码推到远端仓库了吗,"克隆,提交"
-克隆,Clone,基本操作,把远端仓库完整复制到本地,先 clone 仓库再装依赖,"仓库,拉取"
-提交,Commit,基本操作,把暂存的改动固化为一个版本快照,提交信息按规范写，方便回溯,"暂存区,推送"
-暂存区,Staging Area / Index,基本操作,工作区与提交之间的缓冲区域,先 add 到暂存区，确认后再提交,"提交,推送"
-拉取,Pull,基本操作,获取远端更新并合并到本地分支,开工前先 pull，避免冲突,"推送,合并"
-推送,Push,基本操作,把本地提交上传到远端仓库,代码推完记得发 MR,"拉取,PR / MR"
-Stash,Git Stash,基本操作,临时保存未提交改动以便切换分支,先 stash 手头的活，切分支救火,"提交,分支"
-分支,Branch,分支与合并,从某个版本派生出的独立开发线,新需求开特性分支开发,"合并,变基"
-合并,Merge,分支与合并,把两个分支的改动合成一条历史,主干合并前先解决冲突,"变基,冲突"
-变基,Rebase,分支与合并,把提交移到另一分支末尾，保持历史线性,MR 前先 rebase 主干,"合并,Squash"
-冲突,Merge Conflict,分支与合并,两分支改了同一处代码导致无法自动合并,解决完冲突记得重新跑测试,"合并,变基"
-Squash,Squash Merge,分支与合并,把多个提交压缩成一个再合并,这个 MR 有 20 个提交，Squash 一下,"变基,提交"
-Cherry-pick,Cherry-pick,分支与合并,把某个分支上的单个提交摘到当前分支,线上热修直接 cherry-pick 到 release 分支,"提交,回滚"
-回滚,Revert / Reset,分支与合并,撤销已提交的改动，revert 生成反向提交,发错了就 revert，别 force push,"Cherry-pick,Force Push"
-PR / MR,Pull Request / Merge Request,协作流程,请求把分支合并入主干并触发评审的协作载体,MR 描述里写清楚改动点和影响面,"Code Review,分支策略"
-Code Review,Code Review,协作流程,他人审阅代码后才能合入的质量关卡,MR 挂一天没人 Review,"PR / MR,评审"
-Fork,Fork,协作流程,把他人仓库复制到自己名下独立开发,先 Fork 再向上游提 PR,PR / MR
-Force Push,Force Push,协作流程,强推覆盖远端历史，需慎用的危险操作,共享分支禁止 force push,"回滚,推送"
-Lockfile,Lockfile,协作流程,锁定依赖精确版本的文件，保证环境可复现,Lockfile 别手改，冲突时重新生成,"依赖,Monorepo"
-Blame,Git Blame,高级与排障,逐行查看代码的最后修改人和提交,Blame 一下，看看这行是谁写的,"定位,Bisect"
-Bisect,Git Bisect,高级与排障,二分法定位引入 Bug 的提交,用 bisect 二分，三个版本就锁定了,"Blame,定位"
-Detached HEAD,Detached HEAD,高级与排障,HEAD 指向提交而非分支的游离状态,Detached HEAD 下的提交切分支就丢,"回滚,分支"
-子模块,Submodule,高级与排障,仓库中嵌套引用另一个仓库的方式,子模块忘记更新，构建又挂了,"仓库,Monorepo"
-Monorepo,Monorepo,高级与排障,多个项目共用一个代码仓库的组织方式,前后端放 Monorepo 统一管理版本,"子模块,Lockfile"
+term,en,category,definition,scenario,related,pitfall
+仓库,Repository,基本操作,Git 管理代码的基本单位，包含全部历史版本,代码推到远端仓库了吗,"克隆,提交",
+克隆,Clone,基本操作,把远端仓库完整复制到本地,先 clone 仓库再装依赖,"仓库,拉取",
+提交,Commit,基本操作,把暂存的改动固化为一个版本快照,提交信息按规范写，方便回溯,"暂存区,推送",
+暂存区,Staging Area / Index,基本操作,工作区与提交之间的缓冲区域,先 add 到暂存区，确认后再提交,"提交,推送",
+拉取,Pull,基本操作,获取远端更新并合并到本地分支,开工前先 pull，避免冲突,"推送,合并",
+推送,Push,基本操作,把本地提交上传到远端仓库,代码推完记得发 MR,"拉取,PR / MR",
+Stash,Git Stash,基本操作,临时保存未提交改动以便切换分支,先 stash 手头的活，切分支救火,"提交,分支",
+分支,Branch,分支与合并,从某个版本派生出的独立开发线,新需求开特性分支开发,"合并,变基",
+合并,Merge,分支与合并,把两个分支的改动合成一条历史,主干合并前先解决冲突,"变基,冲突",
+变基,Rebase,分支与合并,把提交移到另一分支末尾，保持历史线性,MR 前先 rebase 主干,"合并,Squash",
+冲突,Merge Conflict,分支与合并,两分支改了同一处代码导致无法自动合并,解决完冲突记得重新跑测试,"合并,变基",
+Squash,Squash Merge,分支与合并,把多个提交压缩成一个再合并,这个 MR 有 20 个提交，Squash 一下,"变基,提交",
+Cherry-pick,Cherry-pick,分支与合并,把某个分支上的单个提交摘到当前分支,线上热修直接 cherry-pick 到 release 分支,"提交,回滚",
+回滚,Revert / Reset,分支与合并,撤销已提交的改动，revert 生成反向提交,发错了就 revert，别 force push,"Cherry-pick,Force Push",
+PR / MR,Pull Request / Merge Request,协作流程,请求把分支合并入主干并触发评审的协作载体,MR 描述里写清楚改动点和影响面,"Code Review,分支策略",
+Code Review,Code Review,协作流程,他人审阅代码后才能合入的质量关卡,MR 挂一天没人 Review,"PR / MR,评审",
+Fork,Fork,协作流程,把他人仓库复制到自己名下独立开发,先 Fork 再向上游提 PR,PR / MR,
+Force Push,Force Push,协作流程,强推覆盖远端历史，需慎用的危险操作,共享分支禁止 force push,"回滚,推送",
+Lockfile,Lockfile,协作流程,锁定依赖精确版本的文件，保证环境可复现,Lockfile 别手改，冲突时重新生成,"依赖,Monorepo",
+Blame,Git Blame,高级与排障,逐行查看代码的最后修改人和提交,Blame 一下，看看这行是谁写的,"定位,Bisect",
+Bisect,Git Bisect,高级与排障,二分法定位引入 Bug 的提交,用 bisect 二分，三个版本就锁定了,"Blame,定位",
+Detached HEAD,Detached HEAD,高级与排障,HEAD 指向提交而非分支的游离状态,Detached HEAD 下的提交切分支就丢,"回滚,分支",
+子模块,Submodule,高级与排障,仓库中嵌套引用另一个仓库的方式,子模块忘记更新，构建又挂了,"仓库,Monorepo",
+Monorepo,Monorepo,高级与排障,多个项目共用一个代码仓库的组织方式,前后端放 Monorepo 统一管理版本,"子模块,Lockfile",

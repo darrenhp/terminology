@@ -1,52 +1,52 @@
-term,en,category,definition,scenario,related
-H5,H5 (Mobile Web),跨端方案,移动端网页的俗称,这个活动页是 H5,"WebView,混合开发"
-混合开发,Hybrid,跨端方案,原生壳加 Web 页面的混合形态,混合开发迭代快,"H5,JSBridge"
-原生,Native,跨端方案,使用平台官方语言开发的应用,原生体验最好但成本高,"跨端,Flutter"
-跨端,Cross-Platform,跨端方案,一套代码多端运行的开发方式,跨端方案省人力,"Flutter,React Native"
-Flutter,Flutter,跨端方案,Google 的跨平台 UI 框架，自绘引擎,Flutter 性能接近原生,"React Native,跨端"
-React Native,React Native,跨端方案,用 React 语法写原生应用的框架,RN 的热更新很方便,"Flutter,跨端"
-小程序,Mini Program,跨端方案,寄生在超级 App 内的轻应用形态,微信小程序有包体积限制,"uni-app,Taro"
-uni-app / Taro,uni-app / Taro,跨端方案,国内主流的小程序跨端编译框架,用 Taro 一套代码发多端小程序,"小程序,跨端"
-WebView,WebView,端能力,App 内嵌的浏览器内核组件,H5 跑在 WebView 里,"JSBridge,混合开发"
-JSBridge,JSBridge,端能力,H5 与原生互相调用的通信桥,调摄像头要走 JSBridge,"WebView,端能力"
-安全区,Safe Area,适配概念,避开刘海、圆角等屏幕物理遮挡的区域,底部按钮要避开安全区,"刘海屏,适配"
-适配,Adaptation,适配概念,让界面在不同屏幕尺寸下正常显示,iOS 适配要兼顾各种机型,"DPR,安全区"
-DPR,Device Pixel Ratio,适配概念,物理像素与逻辑像素的比值,DPR 3 的屏图要给 3x,"Retina,独立像素"
-独立像素,Logical Pixel / pt / dp,适配概念,与设备无关的逻辑像素单位,设计稿用独立像素标注,"DPR,适配"
-冷启动,Cold Start,体验与性能,App 进程不在内存中的完整启动,冷启动优化到 1.5 秒,"热启动,启动页"
-热启动,Hot Start,体验与性能,App 进程仍在后台的快速恢复,热启动几乎无感,"冷启动,保活"
-启动页,Splash Screen,体验与性能,打开 App 时的品牌或加载过渡页,启动页别超过 3 秒,"闪屏,冷启动"
-保活,Keep-Alive,体验与性能,让 App 进程驻留后台不被杀,安卓保活越来越难,"热启动,推送"
-下拉刷新,Pull to Refresh,体验与性能,下拉列表触发数据刷新的手势,下拉刷新加个 loading 动画,"上拉加载,手势"
-上拉加载,Infinite Scroll / Load More,体验与性能,滚动到底部加载下一页数据,列表用上拉加载做分页,"下拉刷新,分页"
-卡顿,Jank / Lag,体验与性能,界面响应迟钝、动画不流畅,滑动列表卡顿，查掉帧,"掉帧,FPS"
-掉帧,Frame Drop,体验与性能,渲染帧率低于目标值导致画面不连贯,主线程干重活就会掉帧,"FPS,卡顿"
-FPS,Frames Per Second,体验与性能,每秒渲染帧数，衡量流畅度,稳定 60 FPS 才算流畅,"掉帧,卡顿"
-ANR,Application Not Responding,体验与性能,安卓应用无响应被系统弹窗,主线程阻塞 5 秒会 ANR,"崩溃,卡顿"
-Crash,Crash,体验与性能,应用异常退出,接入 Crash 监控平台,"ANR,OOM"
-OOM,Out of Memory,体验与性能,内存耗尽导致的崩溃或卡死,大图没压缩，直接 OOM,"Crash,内存"
-推送,Push Notification,端能力,服务端向客户端下发消息的通道,推送走厂商通道更稳,"通知栏,保活"
-深链,Deep Link,端能力,直接跳转到 App 内指定页面的链接,短信里带深链，点击直达活动页,"Universal Link,scheme"
-Universal Link,Universal Link / App Link,端能力,iOS 与安卓官方的网页唤起 App 机制,用 Universal Link 替代 scheme,"深链,scheme"
-Scheme,URL Scheme,端能力,自定义协议，用于 App 间跳转,微信里 scheme 唤不起了,"深链,Universal Link"
-免密登录,One-Tap Login,端能力,运营商网关认证的一键登录,免密登录比短信验证码转化高,"一键登录,登录态"
-一键登录,One-Click Login,端能力,本机号码校验实现的快捷登录,接入一键登录减少流失,"免密登录,Token"
-登录态,Login State / Session,端能力,客户端保存的用户身份凭证,登录态过期要引导重新登录,"Token,鉴权"
-热更新,Hot Update / OTA,发布运维,不经过商店直接更新代码或资源,RN 热更新修线上 Bug,"OTA,动态化"
-动态化,Dynamic Bundle,发布运维,通过下发脚本或包改变页面内容的能力,运营页面要支持动态化,"热更新,配置化"
-分包,Subpackage,发布运维,小程序拆分主包与子包减小体积,分包后主包控制在 2MB 内,"包体积,小程序"
-包体积,Package Size,发布运维,安装包或资源包的大小,包体积每加 1MB 转化掉一截,"瘦身,分包"
-瘦身,Size Reduction,发布运维,压缩图片、裁剪代码减小包体积,发布前做一轮瘦身,"包体积,压缩"
-审核,App Review,发布运维,应用商店对上架包的合规审查,iOS 审核被拒了,"上架,马甲包"
-上架,Publish / Release,发布运维,应用通过审核后在商店发布,周四提审，下周一上架,"审核,发版"
-马甲包,Shell App,发布运维,绕过审查或分发限制的备用包,马甲包有封号风险,"审核,上架"
-TestFlight,TestFlight,发布运维,iOS 官方的测试分发平台,先发 TestFlight 给测试,"灰度,提测"
-鸿蒙,HarmonyOS / ArkTS,跨端方案,华为自研操作系统的应用开发体系,新项目要出鸿蒙版本,"跨端,Flutter"
-KMP,Kotlin Multiplatform,跨端方案,用 Kotlin 共享业务逻辑层的跨平台方案,核心逻辑用 KMP 下沉复用,"跨端,Flutter"
-代码混淆,Code Obfuscation,发布运维,压缩重命名代码增大逆向难度的处理,发版前开混淆，注意反射类要 keep,"加固,符号表"
-加固,App Hardening / Packing,发布运维,对安装包加壳防破解防二次打包,金融类 App 上架前必须加固,"代码混淆,安全"
-渠道包,Channel Build,发布运维,针对不同分发渠道打的不同安装包,打十个渠道包，注意渠道号回传,"分包,马甲包"
-符号表,Symbol Table / dSYM,发布运维,还原混淆后崩溃堆栈的映射文件,崩溃堆栈读不懂，符号表没传,"Crash,代码混淆"
-崩溃率,Crash Rate,体验与性能,崩溃用户或次数占比的核心质量指标,崩溃率必须压在千分之一以下,"Crash,ANR"
-离线包,Offline Package,发布运维,提前下发到端上的前端资源包,首页秒开靠离线包预热资源,"H5,动态化"
-预加载,Preload / Prefetch,体验与性能,提前加载即将用到的资源或数据,列表下滑前预加载下一页,"懒加载,上拉加载"
+term,en,category,definition,scenario,related,pitfall
+H5,H5 (Mobile Web),跨端方案,移动端网页的俗称,这个活动页是 H5,"WebView,混合开发",
+混合开发,Hybrid,跨端方案,原生壳加 Web 页面的混合形态,混合开发迭代快,"H5,JSBridge",
+原生,Native,跨端方案,使用平台官方语言开发的应用,原生体验最好但成本高,"跨端,Flutter",
+跨端,Cross-Platform,跨端方案,一套代码多端运行的开发方式,跨端方案省人力,"Flutter,React Native",
+Flutter,Flutter,跨端方案,Google 的跨平台 UI 框架，自绘引擎,Flutter 性能接近原生,"React Native,跨端",
+React Native,React Native,跨端方案,用 React 语法写原生应用的框架,RN 的热更新很方便,"Flutter,跨端",
+小程序,Mini Program,跨端方案,寄生在超级 App 内的轻应用形态,微信小程序有包体积限制,"uni-app,Taro",
+uni-app / Taro,uni-app / Taro,跨端方案,国内主流的小程序跨端编译框架,用 Taro 一套代码发多端小程序,"小程序,跨端",
+WebView,WebView,端能力,App 内嵌的浏览器内核组件,H5 跑在 WebView 里,"JSBridge,混合开发",
+JSBridge,JSBridge,端能力,H5 与原生互相调用的通信桥,调摄像头要走 JSBridge,"WebView,端能力",
+安全区,Safe Area,适配概念,避开刘海、圆角等屏幕物理遮挡的区域,底部按钮要避开安全区,"刘海屏,适配",
+适配,Adaptation,适配概念,让界面在不同屏幕尺寸下正常显示,iOS 适配要兼顾各种机型,"DPR,安全区",
+DPR,Device Pixel Ratio,适配概念,物理像素与逻辑像素的比值,DPR 3 的屏图要给 3x,"Retina,独立像素",
+独立像素,Logical Pixel / pt / dp,适配概念,与设备无关的逻辑像素单位,设计稿用独立像素标注,"DPR,适配",
+冷启动,Cold Start,体验与性能,App 进程不在内存中的完整启动,冷启动优化到 1.5 秒,"热启动,启动页",
+热启动,Hot Start,体验与性能,App 进程仍在后台的快速恢复,热启动几乎无感,"冷启动,保活",
+启动页,Splash Screen,体验与性能,打开 App 时的品牌或加载过渡页,启动页别超过 3 秒,"闪屏,冷启动",
+保活,Keep-Alive,体验与性能,让 App 进程驻留后台不被杀,安卓保活越来越难,"热启动,推送",
+下拉刷新,Pull to Refresh,体验与性能,下拉列表触发数据刷新的手势,下拉刷新加个 loading 动画,"上拉加载,手势",
+上拉加载,Infinite Scroll / Load More,体验与性能,滚动到底部加载下一页数据,列表用上拉加载做分页,"下拉刷新,分页",
+卡顿,Jank / Lag,体验与性能,界面响应迟钝、动画不流畅,滑动列表卡顿，查掉帧,"掉帧,FPS",
+掉帧,Frame Drop,体验与性能,渲染帧率低于目标值导致画面不连贯,主线程干重活就会掉帧,"FPS,卡顿",
+FPS,Frames Per Second,体验与性能,每秒渲染帧数，衡量流畅度,稳定 60 FPS 才算流畅,"掉帧,卡顿",
+ANR,Application Not Responding,体验与性能,安卓应用无响应被系统弹窗,主线程阻塞 5 秒会 ANR,"崩溃,卡顿",
+Crash,Crash,体验与性能,应用异常退出,接入 Crash 监控平台,"ANR,OOM",
+OOM,Out of Memory,体验与性能,内存耗尽导致的崩溃或卡死,大图没压缩，直接 OOM,"Crash,内存",
+推送,Push Notification,端能力,服务端向客户端下发消息的通道,推送走厂商通道更稳,"通知栏,保活",
+深链,Deep Link,端能力,直接跳转到 App 内指定页面的链接,短信里带深链，点击直达活动页,"Universal Link,scheme",
+Universal Link,Universal Link / App Link,端能力,iOS 与安卓官方的网页唤起 App 机制,用 Universal Link 替代 scheme,"深链,scheme",
+Scheme,URL Scheme,端能力,自定义协议，用于 App 间跳转,微信里 scheme 唤不起了,"深链,Universal Link",
+免密登录,One-Tap Login,端能力,运营商网关认证的一键登录,免密登录比短信验证码转化高,"一键登录,登录态",
+一键登录,One-Click Login,端能力,本机号码校验实现的快捷登录,接入一键登录减少流失,"免密登录,Token",
+登录态,Login State / Session,端能力,客户端保存的用户身份凭证,登录态过期要引导重新登录,"Token,鉴权",
+热更新,Hot Update / OTA,发布运维,不经过商店直接更新代码或资源,RN 热更新修线上 Bug,"OTA,动态化",
+动态化,Dynamic Bundle,发布运维,通过下发脚本或包改变页面内容的能力,运营页面要支持动态化,"热更新,配置化",
+分包,Subpackage,发布运维,小程序拆分主包与子包减小体积,分包后主包控制在 2MB 内,"包体积,小程序",
+包体积,Package Size,发布运维,安装包或资源包的大小,包体积每加 1MB 转化掉一截,"瘦身,分包",
+瘦身,Size Reduction,发布运维,压缩图片、裁剪代码减小包体积,发布前做一轮瘦身,"包体积,压缩",
+审核,App Review,发布运维,应用商店对上架包的合规审查,iOS 审核被拒了,"上架,马甲包",
+上架,Publish / Release,发布运维,应用通过审核后在商店发布,周四提审，下周一上架,"审核,发版",
+马甲包,Shell App,发布运维,绕过审查或分发限制的备用包,马甲包有封号风险,"审核,上架",
+TestFlight,TestFlight,发布运维,iOS 官方的测试分发平台,先发 TestFlight 给测试,"灰度,提测",
+鸿蒙,HarmonyOS / ArkTS,跨端方案,华为自研操作系统的应用开发体系,新项目要出鸿蒙版本,"跨端,Flutter",
+KMP,Kotlin Multiplatform,跨端方案,用 Kotlin 共享业务逻辑层的跨平台方案,核心逻辑用 KMP 下沉复用,"跨端,Flutter",
+代码混淆,Code Obfuscation,发布运维,压缩重命名代码增大逆向难度的处理,发版前开混淆，注意反射类要 keep,"加固,符号表",
+加固,App Hardening / Packing,发布运维,对安装包加壳防破解防二次打包,金融类 App 上架前必须加固,"代码混淆,安全",
+渠道包,Channel Build,发布运维,针对不同分发渠道打的不同安装包,打十个渠道包，注意渠道号回传,"分包,马甲包",
+符号表,Symbol Table / dSYM,发布运维,还原混淆后崩溃堆栈的映射文件,崩溃堆栈读不懂，符号表没传,"Crash,代码混淆",
+崩溃率,Crash Rate,体验与性能,崩溃用户或次数占比的核心质量指标,崩溃率必须压在千分之一以下,"Crash,ANR",
+离线包,Offline Package,发布运维,提前下发到端上的前端资源包,首页秒开靠离线包预热资源,"H5,动态化",
+预加载,Preload / Prefetch,体验与性能,提前加载即将用到的资源或数据,列表下滑前预加载下一页,"懒加载,上拉加载",

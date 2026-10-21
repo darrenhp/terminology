@@ -1,82 +1,85 @@
-term,en,category,definition,scenario,related
-CI,Continuous Integration,CI/CD,持续集成，频繁合并并自动验证,提 MR 触发 CI 跑测试,"CD,流水线"
-CD,Continuous Delivery / Deployment,CI/CD,持续交付或部署，自动发布到环境,CD 到测试环境自动部署,"CI,流水线"
-持续部署,Continuous Deployment,CI/CD,通过测试后自动上生产,持续部署要有门禁,"CD,灰度"
-流水线,Pipeline,CI/CD,自动化的构建、测试、发布流程,流水线挂了全员阻塞,"CI,阶段"
-构建,Build,CI/CD,把源码编译打包为制品,构建产物要可追溯,"制品,CI"
-制品,Artifact,CI/CD,构建产出的可部署单元,制品带版本号上传仓库,"构建,镜像"
-制品库,Artifact Repository,CI/CD,统一存储管理制品的仓库,npm 包推私有制品库,"制品,仓库"
-分支策略,Branching Strategy,CI/CD,团队协同的分支管理约定,分支策略决定发布节奏,"Git Flow,主干开发"
-Git Flow,Git Flow,CI/CD,经典的多分支协作模型,小团队别上 Git Flow，太重,"主干开发,分支策略"
-主干开发,Trunk-Based Development,CI/CD,所有人在主干上高频集成的模式,主干开发配功能开关,"Git Flow,特性开关"
-功能开关,Feature Toggle,CI/CD,用开关控制功能是否对用户生效,没做完的功能用开关藏起来,"主干开发,灰度"
-蓝绿部署,Blue-Green Deployment,发布策略,双环境切换，一键换流零停机,蓝绿部署回滚最快,"红黑部署,滚动发布"
-金丝雀发布,Canary Release,发布策略,先放小比例流量验证再全量,金丝雀先放 1% 看报错,"灰度,滚动发布"
-滚动发布,Rolling Release,发布策略,逐批替换实例实现平滑更新,滚动发布期间新旧共存,"蓝绿,金丝雀"
-灰度发布,Grayscale Release,发布策略,按用户或比例逐步放量的发布方式,按白名单灰度,"金丝雀,放量"
-影子发布,Shadow Release,发布策略,镜像流量到新版本但不影响响应,影子发布验证真实流量,"金丝雀,流量镜像"
-AB 实验,A/B Testing,发布策略,分组对比验证方案效果,两个按钮上个 AB 实验,"灰度,实验"
-回滚,Rollback,发布策略,出问题时退回到上一个版本,一键回滚是发布底线,"发布,蓝绿"
-热更新,Hot Update,发布策略,不重启服务直接替换代码或资源,脚本热更新，服务别重启,"蓝绿,重启"
-发车,Ship it / Release,发布黑话,把版本比作车次，开始把改动发布上线,今晚十点发车，相关同学留一下,"车次,班车"
-车次,Release Train,发布黑话,一次发布批次，源自发布火车的比喻,这个需求赶不上本周这趟车次,"发车,班车"
-班车,Regular Release Train,发布黑话,按固定节奏发车的常规发布,双周班车，周四下午是发车日,"发车,车次"
-专车,Hotfix Release,发布黑话,不等班车、单独紧急发的版本,线上这个 bug 走专车，今天修完就发,"班车,热修复"
-上车,Ship in This Release,发布黑话,改动并入本次发布一起上线,你这个功能上不了这趟车,"发车,跟车"
-跳车,Drop from Release,发布黑话,把改动从本次发布中撤下,风险太高，我先跳车下一班再发,"上车,发车"
-赶车,Catch the Release,发布黑话,赶在发车前完成开发和合入,赶车赶到十点才合进去,"发车,封网"
-末班车,Last Release Train,发布黑话,封网或长假前的最后一次发布机会,赶不上末班车就等年后了,"封网,发车"
-司机,Release Driver,发布黑话,本次发布的总负责人，负责盯盘和决策,这趟车谁当司机？出事找谁,"发车,值班"
-跟车,Ride Along,发布黑话,自己的改动搭别人的版本顺带上线,我这个小改动跟这趟车一起发,"上车,车次"
-滚车,Rollback (slang),发布黑话,回滚的行话说法，把车倒回去,数据对不上，马上滚车,"回滚,翻车"
-翻车,Bad Release,发布黑话,发布导致线上事故,昨晚发车翻了，今早全员复盘,"发车,事后复盘"
-裸奔,Ship Without Safety Net,发布黑话,没有灰度、开关或回滚预案直接上线,别裸奔，至少配个开关兜底,"灰度,功能开关"
-一把梭,Big Bang Release,发布黑话,不分批、一次性全量切到新版本,内部小服务一把梭，核心链路别这么干,"推全,灰度"
-推全,Full Rollout,发布黑话,把灰度推到百分之百全量,灰度指标没问题，推全吧,"灰度,放量"
-放量,Ramp Up,发布黑话,逐步提高新版本的流量比例,先放量到 20%，观察半小时,"灰度,推全"
-切流,Traffic Switch,发布黑话,把流量从旧链路切到新链路,切流前确认老链路随时能切回来,"摘流量,灰度"
-摘流量,Drain Traffic,发布黑话,先把实例的流量摘掉再做操作,先摘流量再重启，别打断用户请求,"优雅下线,负载均衡"
-洗数据,Data Backfill,发布黑话,上线后批量订正或初始化历史数据,新字段上线要先洗一遍历史数据,"数据迁移,双写"
-双跑,Parallel Run,发布黑话,新老逻辑同时运行并比对结果,重构先双跑一周对账再切,"影子发布,对账"
-停发,Release Freeze,发布黑话,暂停一切发布的管控期,大促前两周停发，只放紧急修复,"封网,变更管理"
-发布窗口,Release Window,发布黑话,允许执行上线操作的时间区间,发布窗口在凌晨两点，白天不许发,"停发,变更管理"
-容器,Container,基础设施,轻量级打包应用及依赖的运行单元,服务全部容器化,"Docker,镜像"
-镜像,Image,基础设施,容器运行的只读模板,镜像要瘦身，别塞源码,"容器,Docker"
-镜像仓库,Registry,基础设施,存储分发镜像的服务,镜像仓库要做多活,"镜像,Docker"
-容器编排,Container Orchestration,基础设施,自动调度、扩缩、自愈容器集群,K8s 是编排事实标准,"K8s,调度"
-K8s,Kubernetes,基础设施,容器编排平台,K8s 学习曲线陡,"容器编排,Pod"
-Pod,Pod,基础设施,K8s 中最小的调度单元,一个 Pod 塞一个主容器,"K8s,容器"
-声明式,Declarative,基础设施,描述目标状态由系统自动达成,K8s 是声明式的,"IaC,命令式"
-IaC,Infrastructure as Code,基础设施,用代码管理基础设施配置,IaC 让环境可复现,"Terraform,声明式"
-Terraform,Terraform,基础设施,主流的 IaC 工具,云资源用 Terraform 管,"IaC,Ansible"
-Ansible,Ansible,基础设施,无 agent 的自动化配置工具,批量改配置用 Ansible,"IaC,自动化"
-环境,Environment,基础设施,开发、测试、预发、生产等运行阶段,预发环境和生产一致,"多环境,环境变量"
-预发,Staging / Pre-production,基础设施,与生产配置一致的最终验证环境,上线前在预发回归一遍,"环境,验收"
-环境变量,Environment Variable,基础设施,外部注入的配置参数,密钥别写死，走环境变量,"配置,密钥"
-密钥管理,Secrets Management,基础设施,安全存储和分发凭证的机制,密钥进 KMS，别进仓库,"环境变量,加密"
-封网,Change Freeze,故障治理,大促或敏感期禁止变更的窗口,双十一封网一周,"冻结期,变更"
-变更管理,Change Management,故障治理,对变更的评审、记录与追溯流程,所有变更走变更管理,"变更评审,封网"
-变更评审,Change Review,故障治理,上线前评估变更风险的评审,高危变更要过评审,"变更管理,上线"
-故障演练,Chaos Engineering / Game Day,故障治理,主动注入故障验证系统韧性,定期做故障演练,"混沌工程,容灾"
-混沌工程,Chaos Engineering,故障治理,系统性实验故障以提升稳定性,混沌工程别在生产乱来,"故障演练,韧性"
-值班,On-Call,故障治理,轮流待命处理线上告警的机制,这周我 On-Call,"告警,升级"
-告警,Alert,故障治理,系统异常时自动通知负责人,告警要分级，别全 P0,"监控,值班"
-事后复盘,Postmortem,故障治理,故障后的无责备复盘与改进,事后复盘对事不对人,"根因,改进"
-根因分析,Root Cause Analysis,故障治理,追溯问题本质原因的方法,5 Whys 做根因分析,"事后复盘,5 Whys"
-5 Whys,5 Whys,故障治理,连续追问为什么找根因的技术,5 Whys 问到不能再问,"根因分析,复盘"
-MTTR,Mean Time To Recovery,故障治理,平均故障恢复时间,MTTR 是稳定性核心指标,"MTTF,可用性"
-MTTF,Mean Time To Failure,故障治理,平均无故障运行时间,MTTF 越长越稳,"MTTR,可用性"
-SLO,Service Level Objective,故障治理,服务水平的内部目标,SLO 定 99.95%，留缓冲,"SLA,SLI"
-SLI,Service Level Indicator,故障治理,衡量服务水平的量化指标,SLI 通常用可用率,"SLO,SLA"
-OOMKilled,OOMKilled,基础设施,容器内存超限被系统强制终止的状态,Pod 重启原因 OOMKilled，调大内存限制,"Pod,内存泄漏"
-Ingress,Ingress,基础设施,K8s 中暴露 HTTP 服务的七层路由规则,域名不通先查 Ingress 规则,"K8s,网关"
-Helm,Helm,基础设施,K8s 应用打包与发布的模板工具,服务部署统一走 Helm Chart,"K8s,IaC"
-HPA,Horizontal Pod Autoscaler,基础设施,按指标自动扩缩副本数的机制,流量高峰靠 HPA 自动扩容,"K8s,容量规划"
-Serverless,Serverless / FaaS,基础设施,无需管理服务器按调用计费的函数计算形态,图片裁剪这种低频任务上 Serverless,"容器,微服务"
-镜像瘦身,Image Slimming,基础设施,减小镜像体积提升拉取部署速度的优化,镜像瘦身用多阶段构建，从 2G 降到 200M,"镜像,镜像仓库"
-可观测性,Observability,故障治理,通过指标日志链路推断系统内部状态的能力,上 K8s 后先把可观测性三件套配齐,"链路追踪,告警"
-拨测,Synthetic Monitoring / Probe,故障治理,从外部模拟用户请求主动探测可用性,多地拨测发现某个区域访问异常,"监控,告警"
-容量规划,Capacity Planning,成本与容量,按业务增长预估资源水位的规划,大促前做容量规划与压测验证,"压测,HPA"
-FinOps,FinOps (Cloud Financial Operations),成本与容量,对云资源成本的可视化分析与优化实践,云账单翻倍了，FinOps 查一下资源浪费,"容量规划,镜像瘦身"
-DevOps,DevOps,运维体系,开发和运维别互相甩锅，把流程自动化,说到底是流程自动化,"CI/CD,站点可靠性工程"
-站点可靠性工程,SRE,运维体系,用工程手段保障线上稳定,SRE 就是运维加开发,"DevOps,稳定性"
+term,en,category,definition,scenario,related,pitfall
+CI,Continuous Integration,CI/CD,持续集成，频繁合并并自动验证,提 MR 触发 CI 跑测试,"CD,流水线",
+CD,Continuous Delivery / Deployment,CI/CD,持续交付或部署，自动发布到环境,CD 到测试环境自动部署,"CI,流水线",
+持续部署,Continuous Deployment,CI/CD,通过测试后自动上生产,持续部署要有门禁,"CD,灰度",
+流水线,Pipeline,CI/CD,自动化的构建、测试、发布流程,流水线挂了全员阻塞,"CI,阶段",
+构建,Build,CI/CD,把源码编译打包为制品,构建产物要可追溯,"制品,CI",
+制品,Artifact,CI/CD,构建产出的可部署单元,制品带版本号上传仓库,"构建,镜像",
+制品库,Artifact Repository,CI/CD,统一存储管理制品的仓库,npm 包推私有制品库,"制品,仓库",
+分支策略,Branching Strategy,CI/CD,团队协同的分支管理约定,分支策略决定发布节奏,"Git Flow,主干开发",
+Git Flow,Git Flow,CI/CD,经典的多分支协作模型,小团队别上 Git Flow，太重,"主干开发,分支策略",
+主干开发,Trunk-Based Development,CI/CD,所有人在主干上高频集成的模式,主干开发配功能开关,"Git Flow,特性开关",
+功能开关,Feature Toggle,CI/CD,用开关控制功能是否对用户生效,没做完的功能用开关藏起来,"主干开发,灰度",
+蓝绿部署,Blue-Green Deployment,发布策略,双环境切换，一键换流零停机,蓝绿部署回滚最快,"红黑部署,滚动发布",
+金丝雀发布,Canary Release,发布策略,先放小比例流量验证再全量,金丝雀先放 1% 看报错,"灰度,滚动发布",
+滚动发布,Rolling Release,发布策略,逐批替换实例实现平滑更新,滚动发布期间新旧共存,"蓝绿,金丝雀",
+灰度发布,Grayscale Release,发布策略,按用户或比例逐步放量的发布方式,按白名单灰度,"金丝雀,放量",
+影子发布,Shadow Release,发布策略,镜像流量到新版本但不影响响应,影子发布验证真实流量,"金丝雀,流量镜像",
+AB 实验,A/B Testing,发布策略,分组对比验证方案效果,两个按钮上个 AB 实验,"灰度,实验",
+回滚,Rollback,发布策略,出问题时退回到上一个版本,一键回滚是发布底线,"发布,蓝绿",
+热更新,Hot Update,发布策略,不重启服务直接替换代码或资源,脚本热更新，服务别重启,"蓝绿,重启",
+发车,Ship it / Release,发布黑话,把版本比作车次，开始把改动发布上线,今晚十点发车，相关同学留一下,"车次,班车",
+车次,Release Train,发布黑话,一次发布批次，源自发布火车的比喻,这个需求赶不上本周这趟车次,"发车,班车",
+班车,Regular Release Train,发布黑话,按固定节奏发车的常规发布,双周班车，周四下午是发车日,"发车,车次",
+专车,Hotfix Release,发布黑话,不等班车、单独紧急发的版本,线上这个 bug 走专车，今天修完就发,"班车,热修复",
+上车,Ship in This Release,发布黑话,改动并入本次发布一起上线,你这个功能上不了这趟车,"发车,跟车",
+跳车,Drop from Release,发布黑话,把改动从本次发布中撤下,风险太高，我先跳车下一班再发,"上车,发车",
+赶车,Catch the Release,发布黑话,赶在发车前完成开发和合入,赶车赶到十点才合进去,"发车,封网",
+末班车,Last Release Train,发布黑话,封网或长假前的最后一次发布机会,赶不上末班车就等年后了,"封网,发车",
+司机,Release Driver,发布黑话,本次发布的总负责人，负责盯盘和决策,这趟车谁当司机？出事找谁,"发车,值班",
+跟车,Ride Along,发布黑话,自己的改动搭别人的版本顺带上线,我这个小改动跟这趟车一起发,"上车,车次",
+滚车,Rollback (slang),发布黑话,回滚的行话说法，把车倒回去,数据对不上，马上滚车,"回滚,翻车",
+翻车,Bad Release,发布黑话,发布导致线上事故,昨晚发车翻了，今早全员复盘,"发车,事后复盘",
+裸奔,Ship Without Safety Net,发布黑话,没有灰度、开关或回滚预案直接上线,别裸奔，至少配个开关兜底,"灰度,功能开关",
+一把梭,Big Bang Release,发布黑话,不分批、一次性全量切到新版本,内部小服务一把梭，核心链路别这么干,"推全,灰度",
+推全,Full Rollout,发布黑话,把灰度推到百分之百全量,灰度指标没问题，推全吧,"灰度,放量",
+放量,Ramp Up,发布黑话,逐步提高新版本的流量比例,先放量到 20%，观察半小时,"灰度,推全",
+切流,Traffic Switch,发布黑话,把流量从旧链路切到新链路,切流前确认老链路随时能切回来,"摘流量,灰度",
+摘流量,Drain Traffic,发布黑话,先把实例的流量摘掉再做操作,先摘流量再重启，别打断用户请求,"优雅下线,负载均衡",
+洗数据,Data Backfill,发布黑话,上线后批量订正或初始化历史数据,新字段上线要先洗一遍历史数据,"数据迁移,双写",
+双跑,Parallel Run,发布黑话,新老逻辑同时运行并比对结果,重构先双跑一周对账再切,"影子发布,对账",
+停发,Release Freeze,发布黑话,暂停一切发布的管控期,大促前两周停发，只放紧急修复,"封网,变更管理",
+发布窗口,Release Window,发布黑话,允许执行上线操作的时间区间,发布窗口在凌晨两点，白天不许发,"停发,变更管理",
+容器,Container,基础设施,轻量级打包应用及依赖的运行单元,服务全部容器化,"Docker,镜像",
+镜像,Image,基础设施,容器运行的只读模板,镜像要瘦身，别塞源码,"容器,Docker",
+镜像仓库,Registry,基础设施,存储分发镜像的服务,镜像仓库要做多活,"镜像,Docker",
+容器编排,Container Orchestration,基础设施,自动调度、扩缩、自愈容器集群,K8s 是编排事实标准,"K8s,调度",
+K8s,Kubernetes,基础设施,容器编排平台,K8s 学习曲线陡,"容器编排,Pod",
+Pod,Pod,基础设施,K8s 中最小的调度单元,一个 Pod 塞一个主容器,"K8s,容器",
+声明式,Declarative,基础设施,描述目标状态由系统自动达成,K8s 是声明式的,"IaC,命令式",
+IaC,Infrastructure as Code,基础设施,用代码管理基础设施配置,IaC 让环境可复现,"Terraform,声明式",
+Terraform,Terraform,基础设施,主流的 IaC 工具,云资源用 Terraform 管,"IaC,Ansible",
+Ansible,Ansible,基础设施,无 agent 的自动化配置工具,批量改配置用 Ansible,"IaC,自动化",
+环境,Environment,基础设施,开发、测试、预发、生产等运行阶段,预发环境和生产一致,"多环境,环境变量",
+预发,Staging / Pre-production,基础设施,与生产配置一致的最终验证环境,上线前在预发回归一遍,"环境,验收",
+环境变量,Environment Variable,基础设施,外部注入的配置参数,密钥别写死，走环境变量,"配置,密钥",
+密钥管理,Secrets Management,基础设施,安全存储和分发凭证的机制,密钥进 KMS，别进仓库,"环境变量,加密",
+封网,Change Freeze,故障治理,大促或敏感期禁止变更的窗口,双十一封网一周,"冻结期,变更",
+变更管理,Change Management,故障治理,对变更的评审、记录与追溯流程,所有变更走变更管理,"变更评审,封网",
+变更评审,Change Review,故障治理,上线前评估变更风险的评审,高危变更要过评审,"变更管理,上线",
+故障演练,Chaos Engineering / Game Day,故障治理,主动注入故障验证系统韧性,定期做故障演练,"混沌工程,容灾",
+混沌工程,Chaos Engineering,故障治理,系统性实验故障以提升稳定性,混沌工程别在生产乱来,"故障演练,韧性",
+值班,On-Call,故障治理,轮流待命处理线上告警的机制,这周我 On-Call,"告警,升级",
+告警,Alert,故障治理,系统异常时自动通知负责人,告警要分级，别全 P0,"监控,值班",
+事后复盘,Postmortem,故障治理,故障后的无责备复盘与改进,事后复盘对事不对人,"根因,改进",
+根因分析,Root Cause Analysis,故障治理,追溯问题本质原因的方法,5 Whys 做根因分析,"事后复盘,5 Whys",
+5 Whys,5 Whys,故障治理,连续追问为什么找根因的技术,5 Whys 问到不能再问,"根因分析,复盘",
+MTTR,Mean Time To Recovery,故障治理,平均故障恢复时间,MTTR 是稳定性核心指标,"MTTF,可用性",
+MTTF,Mean Time To Failure,故障治理,平均无故障运行时间,MTTF 越长越稳,"MTTR,可用性",
+SLO,Service Level Objective,故障治理,服务水平的内部目标,SLO 定 99.95%，留缓冲,"SLA,SLI",
+SLI,Service Level Indicator,故障治理,衡量服务水平的量化指标,SLI 通常用可用率,"SLO,SLA",
+OOMKilled,OOMKilled,基础设施,容器内存超限被系统强制终止的状态,Pod 重启原因 OOMKilled，调大内存限制,"Pod,内存泄漏",
+Ingress,Ingress,基础设施,K8s 中暴露 HTTP 服务的七层路由规则,域名不通先查 Ingress 规则,"K8s,网关",
+Helm,Helm,基础设施,K8s 应用打包与发布的模板工具,服务部署统一走 Helm Chart,"K8s,IaC",
+HPA,Horizontal Pod Autoscaler,基础设施,按指标自动扩缩副本数的机制,流量高峰靠 HPA 自动扩容,"K8s,容量规划",
+Serverless,Serverless / FaaS,基础设施,无需管理服务器按调用计费的函数计算形态,图片裁剪这种低频任务上 Serverless,"容器,微服务",
+镜像瘦身,Image Slimming,基础设施,减小镜像体积提升拉取部署速度的优化,镜像瘦身用多阶段构建，从 2G 降到 200M,"镜像,镜像仓库",
+可观测性,Observability,故障治理,通过指标日志链路推断系统内部状态的能力,上 K8s 后先把可观测性三件套配齐,"链路追踪,告警",
+拨测,Synthetic Monitoring / Probe,故障治理,从外部模拟用户请求主动探测可用性,多地拨测发现某个区域访问异常,"监控,告警",
+容量规划,Capacity Planning,成本与容量,按业务增长预估资源水位的规划,大促前做容量规划与压测验证,"压测,HPA",
+FinOps,FinOps (Cloud Financial Operations),成本与容量,对云资源成本的可视化分析与优化实践,云账单翻倍了，FinOps 查一下资源浪费,"容量规划,镜像瘦身",
+DevOps,DevOps,运维体系,开发和运维别互相甩锅，把流程自动化,说到底是流程自动化,"CI/CD,站点可靠性工程",
+站点可靠性工程,SRE,运维体系,用工程手段保障线上稳定,SRE 就是运维加开发,"DevOps,稳定性",
+优雅停机,Graceful Shutdown,发布策略,停机前先摘流量、处理完在途请求再退出进程,发布前先优雅停机，别直接 kill,滚动发布、健康检查、负载均衡,直接 kill 会丢消息、断事务、留下半截写入
+金丝雀,Canary Release,发布策略,先放极小流量验证新版本，确认无问题再逐步扩量,金丝雀先放 1% 流量观察,灰度、回滚、发布,没有自动回滚指标，金丝雀等于裸奔
+特性开关,Feature Flag,发布策略,用配置控制功能是否生效，不发版即可开关,新功能先挂特性开关灰度,灰度、金丝雀、配置中心,上线后不清理，开关堆积成技术债，分支逻辑越来越难测

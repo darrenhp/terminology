@@ -1,19 +1,19 @@
-term,en,category,definition,scenario,related
-ETL,ETL (Extract-Transform-Load),数据管道,抽取源数据、转换清洗后装载入仓的过程,ETL 任务凌晨跑挂了，源表少数据,"数仓,CDC"
-CDC,Change Data Capture,数据管道,捕获数据库变更并同步到下游的技术,MySQL 到 ES 的同步走 CDC,"Kafka,ETL"
-Kafka,Kafka,平台与工具,高吞吐分布式消息队列，实时数据管道主力,日志先投 Kafka，下游各自消费,"消息队列,Flink"
-Flink,Flink,平台与工具,流批一体的实时计算引擎,实时指标用 Flink 聚合,"Kafka,Spark"
-Spark,Spark,平台与工具,大规模离线批处理计算引擎,离线报表跑 Spark 任务,"Flink,ETL"
-数仓,Data Warehouse,数仓建模,面向分析的结构化数据集中存储体系,实时数仓和离线数仓分开建,"数据湖,湖仓一体"
-数据湖,Data Lake,数仓建模,存储原始多格式数据的低成本仓库,原始日志先进数据湖，再清洗入仓,"数仓,湖仓一体"
-湖仓一体,Lakehouse,数仓建模,融合数据湖灵活性与数仓管理能力的架构,新项目直接上湖仓一体架构,"数据湖,数仓"
-数仓分层,ODS / DWD / DWS / ADS,数仓建模,原始层、明细层、汇总层、应用层的分层建模规范,这个指标去 DWS 层找，别直接查 ODS,"数仓,宽表"
-宽表,Wide Table,数仓建模,把多维度信息拍平到一张大表方便分析,报表慢就给他建张宽表,"数仓分层,维表 / 事实表"
-维表 / 事实表,Dimension / Fact Table,数仓建模,维度建模中描述实体与记录事件的两种表,日期维度没对齐，事实表关联不上,"宽表,数仓分层"
-拉链表,SCD (Slowly Changing Dimension),数仓建模,记录历史状态变化的维度表实现,用户等级变化要留痕，用拉链表,"维表 / 事实表,数仓"
-物化视图,Materialized View,平台与工具,预先计算并落盘的查询结果集,查询太慢，建物化视图换空间,"宽表,OLAP"
-OLAP,OLAP (Online Analytical Processing),平台与工具,面向多维分析优化的查询引擎类型,明细查询走 OLAP 引擎，别打 OLTP 库,"物化视图,数仓"
-数据血缘,Data Lineage,平台与工具,字段级追溯数据来源与加工链路,指标口径有争议，查血缘看加工逻辑,"数据质量,口径"
-数据质量,Data Quality,平台与工具,对完整性、准确性、及时性的度量与监控,上数据质量告警，别等业务发现,"脏数据,对账"
-数据治理,Data Governance,数据治理,管数据的质量、权限和口径,同一个指标三个数，就得治理,"数据质量,口径"
-数据沼泽,Data Swamp,数据治理,数据湖里堆满没人治理、找不到的脏数据,湖变沼泽，只剩交存储费的份,"数据湖,数据治理"
+term,en,category,definition,scenario,related,pitfall
+ETL,ETL (Extract-Transform-Load),数据管道,抽取源数据、转换清洗后装载入仓的过程,ETL 任务凌晨跑挂了，源表少数据,"数仓,CDC",
+CDC,Change Data Capture,数据管道,捕获数据库变更并同步到下游的技术,MySQL 到 ES 的同步走 CDC,"Kafka,ETL",
+Kafka,Kafka,平台与工具,高吞吐分布式消息队列，实时数据管道主力,日志先投 Kafka，下游各自消费,"消息队列,Flink",
+Flink,Flink,平台与工具,流批一体的实时计算引擎,实时指标用 Flink 聚合,"Kafka,Spark",
+Spark,Spark,平台与工具,大规模离线批处理计算引擎,离线报表跑 Spark 任务,"Flink,ETL",
+数仓,Data Warehouse,数仓建模,面向分析的结构化数据集中存储体系,实时数仓和离线数仓分开建,"数据湖,湖仓一体",
+数据湖,Data Lake,数仓建模,存储原始多格式数据的低成本仓库,原始日志先进数据湖，再清洗入仓,"数仓,湖仓一体",
+湖仓一体,Lakehouse,数仓建模,融合数据湖灵活性与数仓管理能力的架构,新项目直接上湖仓一体架构,"数据湖,数仓",
+数仓分层,ODS / DWD / DWS / ADS,数仓建模,原始层、明细层、汇总层、应用层的分层建模规范,这个指标去 DWS 层找，别直接查 ODS,"数仓,宽表",
+宽表,Wide Table,数仓建模,把多维度信息拍平到一张大表方便分析,报表慢就给他建张宽表,"数仓分层,维表 / 事实表",
+维表 / 事实表,Dimension / Fact Table,数仓建模,维度建模中描述实体与记录事件的两种表,日期维度没对齐，事实表关联不上,"宽表,数仓分层",
+拉链表,SCD (Slowly Changing Dimension),数仓建模,记录历史状态变化的维度表实现,用户等级变化要留痕，用拉链表,"维表 / 事实表,数仓",
+物化视图,Materialized View,平台与工具,预先计算并落盘的查询结果集,查询太慢，建物化视图换空间,"宽表,OLAP",
+OLAP,OLAP (Online Analytical Processing),平台与工具,面向多维分析优化的查询引擎类型,明细查询走 OLAP 引擎，别打 OLTP 库,"物化视图,数仓",
+数据血缘,Data Lineage,平台与工具,字段级追溯数据来源与加工链路,指标口径有争议，查血缘看加工逻辑,"数据质量,口径",
+数据质量,Data Quality,平台与工具,对完整性、准确性、及时性的度量与监控,上数据质量告警，别等业务发现,"脏数据,对账",
+数据治理,Data Governance,数据治理,管数据的质量、权限和口径,同一个指标三个数，就得治理,"数据质量,口径",
+数据沼泽,Data Swamp,数据治理,数据湖里堆满没人治理、找不到的脏数据,湖变沼泽，只剩交存储费的份,"数据湖,数据治理",

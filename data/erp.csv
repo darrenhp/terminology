@@ -1,92 +1,92 @@
-term,en,category,definition,scenario,related
-ERP,ERP (Enterprise Resource Planning),业务模块,整合企业财务、采购、销售、生产等核心业务的管理系统,公司要上 ERP，先把主数据理顺,"业务模块,主数据"
-FI,FI (Financial Accounting),业务模块,财务会计模块：总账、应收应付、固定资产,月底 FI 关账前业务单据都要审完,"CO,期末结账"
-CO,CO (Controlling),业务模块,管理会计模块：成本中心、利润中心与产品成本核算,费用分摊规则在 CO 里配,"FI,成本中心"
-MM,MM (Materials Management),业务模块,物料管理模块：采购、库存与供应商管理,采购流程走 MM，从申请到入库,"采购申请,采购订单"
-SD,SD (Sales & Distribution),业务模块,销售与分销模块：报价、订单、发货、开票,销售链路归 SD 管,"销售订单,发货单"
-PP,PP (Production Planning),业务模块,生产计划模块：BOM、工艺路线与 MRP 运算,跑 MRP 是 PP 模块的活,"BOM,MRP"
-WM,WM / WMS (Warehouse Management),业务模块,仓库管理模块：库位、上架、拣货、盘点,拣货路径优化是 WM 的事,"库位,批次"
-QM,QM (Quality Management),业务模块,质量管理模块：来料、过程与出货检验,来料检验不过，QM 冻结这批货,"IQC,OQC"
-PM,PM / EAM (Plant Maintenance),业务模块,设备维护模块：设备台账、保养计划、维修工单,设备保养周期在 PM 里维护,"维修工单,生产工单"
-PS,PS (Project System),业务模块,项目管理模块：WBS、项目预算与成本归集,研发项目成本挂 PS 核算,"成本中心,项目预算"
-HCM,HR / HCM (Human Capital Management),业务模块,人力资源模块：组织、考勤、薪资、招聘,考勤数据从 HCM 同步过来,"多组织,ERP"
-CRM,CRM (Customer Relationship Management),业务模块,客户关系管理：线索、商机与跟进记录,线索先进 CRM，成交再进 ERP,"销售订单,主数据"
-SCM,SCM (Supply Chain Management),业务模块,供应链管理：需求预测与上下游协同,需求预测模型接进 SCM,"SRM,MRP"
-SRM,SRM (Supplier Relationship Management),业务模块,供应商关系管理：寻源、招投标与绩效评估,供应商准入走 SRM 评审,"SCM,询价单"
-MES,MES (Manufacturing Execution System),业务模块,制造执行系统：车间报工与设备数据采集,ERP 下工单，MES 管执行,"生产工单,报工"
-PLM,PLM (Product Lifecycle Management),业务模块,产品生命周期管理：图纸、设计变更与 BOM 版本,BOM 变更从 PLM 同步到 ERP,"BOM,版本管理"
-OA,OA (Office Automation),业务模块,办公自动化：审批、公文与通知,请假走 OA，出差审批也挂那边,"审批流,工作流"
-BI,BI (Business Intelligence),业务模块,商业智能：报表、驾驶舱与数据分析,老板要看 BI 驾驶舱的库存周转,"数据看板,OLAP"
-APS,APS (Advanced Planning & Scheduling),业务模块,高级计划排程：考虑产能约束的精细排产,MRP 跑物料，APS 排产线产能,"MRP,MES"
-TMS,TMS (Transportation Management System),业务模块,运输管理系统：运单、线路与运费结算,干线运输调度走 TMS,"WM,发货单"
-DRP,DRP (Distribution Requirements Planning),业务模块,分销需求计划：多级仓网点的补货计划,门店补货靠 DRP 算,"MRP,SCM"
-CPQ,"CPQ (Configure, Price, Quote)",业务模块,配置、定价、报价一体化的售前系统,定制产品报价用 CPQ 自动算价,"报价单,CRM"
-FSM,FSM (Field Service Management),业务模块,现场服务管理：上门安装维修的派单与执行,售后上门工单走 FSM 派单,"PM,工单"
-EHS,"EHS (Environment, Health & Safety)",业务模块,环境、健康与安全管理：隐患排查与事故记录,安全检查记录录 EHS 系统,"QM,劳动合规"
-DMS,DMS (Document / Dealer Management System),业务模块,文档管理或经销商管理系统，视行业语境区分,图纸归档在 DMS，先确认说的是哪个 DMS,"PLM,CRM"
-RPA,RPA (Robotic Process Automation),业务模块,用软件机器人模拟人工操作完成重复流程,发票录入用 RPA 机器人跑,"工作流,EDI"
-P2P,P2P (Procure to Pay),采购链路,从采购申请到付款的端到端业务链路,P2P 链路涉及 MM 和 FI 两个模块,"O2C,采购订单"
-采购申请,PR (Purchase Requisition),采购链路,内部提出的采购需求单据，是采购链路的起点,PR 审批通过才能转采购订单,"采购订单,P2P"
-询价单,RFQ (Request for Quotation),采购链路,向供应商询价比价的前置单据,先发 RFQ 给三家供应商比价,"采购申请,采购订单"
-采购订单,PO (Purchase Order),采购链路,正式向供应商下单的采购单据,PO 下了供应商才排产,"采购申请,收货单"
-预发货通知,ASN (Advance Shipping Notice),采购链路,供应商发货前推送的到货预告,有了 ASN 仓库提前安排收货位,"采购订单,EDI"
-收货单,GR / GRN (Goods Receipt Note),采购链路,货物到仓后的收货入库凭证,按 PO 收货，GRN 数量不能超订单,"IQC,应付账款"
-来料检验,IQC (Incoming Quality Control),采购链路,物料入库前的质量检验环节,IQC 不合格就整批退货,"QM,收货单"
-应付账款,AP (Accounts Payable),采购链路,采购后欠供应商的待付款项,AP 账龄超 90 天的拉个清单,"应收账款,发票"
-O2C,O2C (Order to Cash),销售链路,从销售订单到收款的端到端业务链路,O2C 链路打通 SD 和 FI,"P2P,销售订单"
-报价单,QT (Quotation),销售链路,向客户提供价格与交期的售前单据,报价单有效期设 30 天,"销售订单,O2C"
-销售订单,SO (Sales Order),销售链路,客户确认购买后创建的销售凭证,SO 一审核就锁库存,"报价单,发货单"
-发货单,DN (Delivery Note),销售链路,仓库按订单拣货发货的出库凭证,DN 打印出来随货同行,"销售订单,出库"
-出库,GI (Goods Issue),销售链路,库存减少的出库过账动作,GI 过账后库存实时扣减,"发货单,收货单"
-发票,INV (Invoice),销售链路,向客户开具的结算票据,开票信息错了要红冲重开,"应收账款,O2C"
-应收账款,AR (Accounts Receivable),销售链路,销售后客户欠企业的待收款项,AR 账龄报表每周给财务,"应付账款,发票"
-BOM,BOM (Bill of Materials),生产与质量,描述产品由哪些物料组成的多层清单,BOM 层级错了 MRP 全算错,"MRP,PLM"
-工艺路线,Routing,生产与质量,产品加工经过的工序顺序与工时定义,工艺路线里这道工序工时改一下,"BOM,生产工单"
-MPS,MPS (Master Production Schedule),生产与质量,主生产计划：确定成品生产的时间与数量,MPS 定了 MRP 才有得跑,"MRP,生产工单"
-MRP,MRP (Material Requirements Planning),生产与质量,按 BOM 和库存计算物料缺料的运算,每晚跑 MRP 生成采购建议,"BOM,MPS"
-生产工单,WO / MO (Work Order),生产与质量,下达给车间的生产执行任务单,工单报工回填实际工时,"MES,报工"
-在制品,WIP (Work in Process),生产与质量,已投入生产但未完工的物料,WIP 积压说明产线堵了,"生产工单,报工"
-报工,Production Confirmation,生产与质量,工人回报工序完成情况与工时的操作,PDA 扫码报工，别手工录,"MES,生产工单"
-出货检验,OQC (Outgoing Quality Control),生产与质量,发货前的最终质量检验环节,OQC 没过这批货出不去,"IQC,发货单"
-SKU,SKU (Stock Keeping Unit),库存与主数据,最小库存管理单位，一物一码,一个颜色一个尺码就是一个 SKU,"批次,计量单位"
-计量单位,UoM (Unit of Measure),库存与主数据,物料的计量单位及换算关系,采购按箱、库存按个，UoM 换算别错,"SKU,主数据"
-批次,Lot / Batch,库存与主数据,同批生产物料的追溯单元,出问题按批次追溯召回,"SKU,序列号"
-序列号,SN (Serial Number),库存与主数据,单件产品的唯一标识，用于逐一追溯,高价值设备要管到 SN 级,"批次,SKU"
-库位,Bin / Location,库存与主数据,仓库内最小的存放位置单元,上架要扫库位码，别乱放,"WM,批次"
-主数据,MDM (Master Data Management),库存与主数据,物料、客户、供应商等基础数据的统一管理,主数据不干净，上线必翻车,"SKU,数据字典"
-调拨单,Transfer Order,库存与主数据,物料在仓库或库位之间转移的库存单据,A 仓调 B 仓先开调拨单,"库位,批次"
-盘点,Stocktaking / Inventory Count,库存与主数据,定期核对账面库存与实物的作业，差异需调整过账,月底全盘，差异单走审批,"批次,库位"
-ABC 分类,ABC Analysis,库存与主数据,按价值占比把物料分级的库存管理方法,A 类物料周盘，C 类年盘,"SKU,盘点"
-总账,GL (General Ledger),财务概念,记录全部会计科目的核心账簿,业务单据最后都过账到 GL,"会计科目表,记账凭证"
-会计科目表,COA (Chart of Accounts),财务概念,企业全部会计科目的层级定义,COA 定了才能开账,"总账,成本中心"
-记账凭证,Voucher / JV,财务概念,记录每笔经济业务的会计凭证,凭证借贷不平不让保存,"总账,期末结账"
-成本中心,Cost Center,财务概念,归集费用但不直接产生利润的组织单元,部门费用都挂成本中心,"利润中心,CO"
-利润中心,Profit Center,财务概念,独立核算收入与利润的组织单元,各事业部按利润中心考核,"成本中心,CO"
-期末结账,Period Closing,财务概念,会计期末关账、结转损益的流程,月结前三天冻结单据,"总账,记账凭证"
-多币种,Multi-currency,财务概念,支持多货币计价与汇率折算的核算能力,海外子公司用多币种核算,"总账,期末结账"
-固定资产,FA (Fixed Asset),财务概念,设备、房产等长期资产的台账与折旧管理,资产卡片每月自动计提折旧,"总账,期末结账"
-预算,Budget,财务概念,费用与支出的事前控制额度，超支可拦截,超预算的报销单一律驳回,"成本中心,记账凭证"
-会计期间,Fiscal Period,财务概念,财务核算的时间分段，关账后禁止过账,上期已关，凭证只能过到本期,"期末结账,总账"
-信用额度,Credit Limit,销售链路,客户可赊销的最大金额控制,超信用额度的 SO 自动冻结,"应收账款,销售订单"
-主从页,Master-Detail Page,页面与单据,表头加可编辑明细行结构的单据页面,订单页做成主从页，明细行可增删,"表单页,单据状态机"
-单据状态机,Document State Machine,页面与单据,草稿、待审、已审、关闭等单据状态的流转规则,已审核的单据不允许直接改,"审批流,主从页"
-审批流,Approval Workflow,页面与单据,单据按规则逐级流转签核的流程,金额超十万加一级审批,"工作流,单据状态机"
-弹窗选择器,Lookup / Picker,页面与单据,从弹窗中搜索选择物料、客户等资料的控件,物料字段用 Lookup，别让人手输编码,"主数据,主从页"
-单据关联,Document Flow,页面与单据,上下游单据的可追溯关联链,从发票能一路反查到原始 PR,"P2P,O2C"
-树形页,Tree Page,页面与单据,维护和展示层级数据的页面范式，如 BOM 树、科目树,BOM 展开做成树形页，支持逐级加载,"BOM,主从页"
-下钻,Drill-down,页面与单据,从汇总指标逐层点击查看明细的分析交互,销售报表支持按区域下钻到单据,"BI,透视表"
-透视表,Pivot Table,页面与单据,行列维度自由组合的交叉分析表格,库龄分析做成透视表，维度随便切,"下钻,BI"
-导入向导,Import Wizard,页面与单据,上传、字段映射、校验、结果多步骤的批量导入流程,物料批量导入走向导，先映射再校验,"主数据,数据字典"
-状态标签,Status Badge,页面与单据,标识单据所处状态的小标签，颜色区分语义,待审批黄色，已审核绿色，作废灰色,"单据状态机,审批流"
-WBS,WBS (Work Breakdown Structure),业务模块,把项目逐层分解为可管理工作包的结构,项目先拆 WBS 再排工时,"PS,工时填报"
-工时填报,Timesheet,业务模块,按人按项目记录投入工时的单据,工时周五截止填报，逾期锁单,"WBS,PS"
-RBAC,RBAC (Role-Based Access Control),系统机制,按角色分配菜单、按钮与数据权限的访问控制模型,权限按 RBAC 配，别给人单独授权,"数据权限,授权"
-数据权限,Data Permission,系统机制,按组织、仓库、部门限制可见数据范围,仓管只能看自己仓的数据，配数据权限,"RBAC,多组织"
-多组织,Multi-Org / Multi-tenant,系统机制,集团、公司、工厂、仓库多层级组织架构的支持能力,集团版要支持多组织数据隔离,"数据权限,RBAC"
-数据字典,Data Dictionary,系统机制,枚举值与基础代码的统一管理配置,单据类型别硬编码，放数据字典,"编码规则,主数据"
-编码规则,Numbering Rule,系统机制,单据号、物料号自动生成的规则配置,PO 编号按编码规则生成：前缀加日期加流水,"数据字典,主从页"
-工作流,Workflow / BPM,系统机制,可配置的业务流程与审批引擎,审批节点走工作流引擎配置,"审批流,OA"
-EDI,EDI (Electronic Data Interchange),系统机制,与客户、供应商系统间的标准化数据交换,大客户要求 EDI 对接订单,"API,预发货通知"
-审计日志,Audit Log,系统机制,记录谁在何时改了什么的操作留痕,金额字段改动必须进审计日志,"RBAC,数据权限"
-数据脱敏,Data Masking,系统机制,敏感字段按权限隐藏或打码显示的字段级权限,手机号对普通角色脱敏展示,"数据权限,RBAC"
-会签,Countersign / Joint Approval,系统机制,审批节点需多人全部通过才能继续流转的签核方式,大额付款单走会签，一个人否就驳回,"审批流,工作流"
+term,en,category,definition,scenario,related,pitfall
+ERP,ERP (Enterprise Resource Planning),业务模块,整合企业财务、采购、销售、生产等核心业务的管理系统,公司要上 ERP，先把主数据理顺,"业务模块,主数据",
+FI,FI (Financial Accounting),业务模块,财务会计模块：总账、应收应付、固定资产,月底 FI 关账前业务单据都要审完,"CO,期末结账",
+CO,CO (Controlling),业务模块,管理会计模块：成本中心、利润中心与产品成本核算,费用分摊规则在 CO 里配,"FI,成本中心",
+MM,MM (Materials Management),业务模块,物料管理模块：采购、库存与供应商管理,采购流程走 MM，从申请到入库,"采购申请,采购订单",
+SD,SD (Sales & Distribution),业务模块,销售与分销模块：报价、订单、发货、开票,销售链路归 SD 管,"销售订单,发货单",
+PP,PP (Production Planning),业务模块,生产计划模块：BOM、工艺路线与 MRP 运算,跑 MRP 是 PP 模块的活,"BOM,MRP",
+WM,WM / WMS (Warehouse Management),业务模块,仓库管理模块：库位、上架、拣货、盘点,拣货路径优化是 WM 的事,"库位,批次",
+QM,QM (Quality Management),业务模块,质量管理模块：来料、过程与出货检验,来料检验不过，QM 冻结这批货,"IQC,OQC",
+PM,PM / EAM (Plant Maintenance),业务模块,设备维护模块：设备台账、保养计划、维修工单,设备保养周期在 PM 里维护,"维修工单,生产工单",
+PS,PS (Project System),业务模块,项目管理模块：WBS、项目预算与成本归集,研发项目成本挂 PS 核算,"成本中心,项目预算",
+HCM,HR / HCM (Human Capital Management),业务模块,人力资源模块：组织、考勤、薪资、招聘,考勤数据从 HCM 同步过来,"多组织,ERP",
+CRM,CRM (Customer Relationship Management),业务模块,客户关系管理：线索、商机与跟进记录,线索先进 CRM，成交再进 ERP,"销售订单,主数据",
+SCM,SCM (Supply Chain Management),业务模块,供应链管理：需求预测与上下游协同,需求预测模型接进 SCM,"SRM,MRP",
+SRM,SRM (Supplier Relationship Management),业务模块,供应商关系管理：寻源、招投标与绩效评估,供应商准入走 SRM 评审,"SCM,询价单",
+MES,MES (Manufacturing Execution System),业务模块,制造执行系统：车间报工与设备数据采集,ERP 下工单，MES 管执行,"生产工单,报工",
+PLM,PLM (Product Lifecycle Management),业务模块,产品生命周期管理：图纸、设计变更与 BOM 版本,BOM 变更从 PLM 同步到 ERP,"BOM,版本管理",
+OA,OA (Office Automation),业务模块,办公自动化：审批、公文与通知,请假走 OA，出差审批也挂那边,"审批流,工作流",
+BI,BI (Business Intelligence),业务模块,商业智能：报表、驾驶舱与数据分析,老板要看 BI 驾驶舱的库存周转,"数据看板,OLAP",
+APS,APS (Advanced Planning & Scheduling),业务模块,高级计划排程：考虑产能约束的精细排产,MRP 跑物料，APS 排产线产能,"MRP,MES",
+TMS,TMS (Transportation Management System),业务模块,运输管理系统：运单、线路与运费结算,干线运输调度走 TMS,"WM,发货单",
+DRP,DRP (Distribution Requirements Planning),业务模块,分销需求计划：多级仓网点的补货计划,门店补货靠 DRP 算,"MRP,SCM",
+CPQ,"CPQ (Configure, Price, Quote)",业务模块,配置、定价、报价一体化的售前系统,定制产品报价用 CPQ 自动算价,"报价单,CRM",
+FSM,FSM (Field Service Management),业务模块,现场服务管理：上门安装维修的派单与执行,售后上门工单走 FSM 派单,"PM,工单",
+EHS,"EHS (Environment, Health & Safety)",业务模块,环境、健康与安全管理：隐患排查与事故记录,安全检查记录录 EHS 系统,"QM,劳动合规",
+DMS,DMS (Document / Dealer Management System),业务模块,文档管理或经销商管理系统，视行业语境区分,图纸归档在 DMS，先确认说的是哪个 DMS,"PLM,CRM",
+RPA,RPA (Robotic Process Automation),业务模块,用软件机器人模拟人工操作完成重复流程,发票录入用 RPA 机器人跑,"工作流,EDI",
+P2P,P2P (Procure to Pay),采购链路,从采购申请到付款的端到端业务链路,P2P 链路涉及 MM 和 FI 两个模块,"O2C,采购订单",
+采购申请,PR (Purchase Requisition),采购链路,内部提出的采购需求单据，是采购链路的起点,PR 审批通过才能转采购订单,"采购订单,P2P",
+询价单,RFQ (Request for Quotation),采购链路,向供应商询价比价的前置单据,先发 RFQ 给三家供应商比价,"采购申请,采购订单",
+采购订单,PO (Purchase Order),采购链路,正式向供应商下单的采购单据,PO 下了供应商才排产,"采购申请,收货单",
+预发货通知,ASN (Advance Shipping Notice),采购链路,供应商发货前推送的到货预告,有了 ASN 仓库提前安排收货位,"采购订单,EDI",
+收货单,GR / GRN (Goods Receipt Note),采购链路,货物到仓后的收货入库凭证,按 PO 收货，GRN 数量不能超订单,"IQC,应付账款",
+来料检验,IQC (Incoming Quality Control),采购链路,物料入库前的质量检验环节,IQC 不合格就整批退货,"QM,收货单",
+应付账款,AP (Accounts Payable),采购链路,采购后欠供应商的待付款项,AP 账龄超 90 天的拉个清单,"应收账款,发票",
+O2C,O2C (Order to Cash),销售链路,从销售订单到收款的端到端业务链路,O2C 链路打通 SD 和 FI,"P2P,销售订单",
+报价单,QT (Quotation),销售链路,向客户提供价格与交期的售前单据,报价单有效期设 30 天,"销售订单,O2C",
+销售订单,SO (Sales Order),销售链路,客户确认购买后创建的销售凭证,SO 一审核就锁库存,"报价单,发货单",
+发货单,DN (Delivery Note),销售链路,仓库按订单拣货发货的出库凭证,DN 打印出来随货同行,"销售订单,出库",
+出库,GI (Goods Issue),销售链路,库存减少的出库过账动作,GI 过账后库存实时扣减,"发货单,收货单",
+发票,INV (Invoice),销售链路,向客户开具的结算票据,开票信息错了要红冲重开,"应收账款,O2C",
+应收账款,AR (Accounts Receivable),销售链路,销售后客户欠企业的待收款项,AR 账龄报表每周给财务,"应付账款,发票",
+BOM,BOM (Bill of Materials),生产与质量,描述产品由哪些物料组成的多层清单,BOM 层级错了 MRP 全算错,"MRP,PLM",
+工艺路线,Routing,生产与质量,产品加工经过的工序顺序与工时定义,工艺路线里这道工序工时改一下,"BOM,生产工单",
+MPS,MPS (Master Production Schedule),生产与质量,主生产计划：确定成品生产的时间与数量,MPS 定了 MRP 才有得跑,"MRP,生产工单",
+MRP,MRP (Material Requirements Planning),生产与质量,按 BOM 和库存计算物料缺料的运算,每晚跑 MRP 生成采购建议,"BOM,MPS",
+生产工单,WO / MO (Work Order),生产与质量,下达给车间的生产执行任务单,工单报工回填实际工时,"MES,报工",
+在制品,WIP (Work in Process),生产与质量,已投入生产但未完工的物料,WIP 积压说明产线堵了,"生产工单,报工",
+报工,Production Confirmation,生产与质量,工人回报工序完成情况与工时的操作,PDA 扫码报工，别手工录,"MES,生产工单",
+出货检验,OQC (Outgoing Quality Control),生产与质量,发货前的最终质量检验环节,OQC 没过这批货出不去,"IQC,发货单",
+SKU,SKU (Stock Keeping Unit),库存与主数据,最小库存管理单位，一物一码,一个颜色一个尺码就是一个 SKU,"批次,计量单位",
+计量单位,UoM (Unit of Measure),库存与主数据,物料的计量单位及换算关系,采购按箱、库存按个，UoM 换算别错,"SKU,主数据",
+批次,Lot / Batch,库存与主数据,同批生产物料的追溯单元,出问题按批次追溯召回,"SKU,序列号",
+序列号,SN (Serial Number),库存与主数据,单件产品的唯一标识，用于逐一追溯,高价值设备要管到 SN 级,"批次,SKU",
+库位,Bin / Location,库存与主数据,仓库内最小的存放位置单元,上架要扫库位码，别乱放,"WM,批次",
+主数据,MDM (Master Data Management),库存与主数据,物料、客户、供应商等基础数据的统一管理,主数据不干净，上线必翻车,"SKU,数据字典",
+调拨单,Transfer Order,库存与主数据,物料在仓库或库位之间转移的库存单据,A 仓调 B 仓先开调拨单,"库位,批次",
+盘点,Stocktaking / Inventory Count,库存与主数据,定期核对账面库存与实物的作业，差异需调整过账,月底全盘，差异单走审批,"批次,库位",
+ABC 分类,ABC Analysis,库存与主数据,按价值占比把物料分级的库存管理方法,A 类物料周盘，C 类年盘,"SKU,盘点",
+总账,GL (General Ledger),财务概念,记录全部会计科目的核心账簿,业务单据最后都过账到 GL,"会计科目表,记账凭证",
+会计科目表,COA (Chart of Accounts),财务概念,企业全部会计科目的层级定义,COA 定了才能开账,"总账,成本中心",
+记账凭证,Voucher / JV,财务概念,记录每笔经济业务的会计凭证,凭证借贷不平不让保存,"总账,期末结账",
+成本中心,Cost Center,财务概念,归集费用但不直接产生利润的组织单元,部门费用都挂成本中心,"利润中心,CO",
+利润中心,Profit Center,财务概念,独立核算收入与利润的组织单元,各事业部按利润中心考核,"成本中心,CO",
+期末结账,Period Closing,财务概念,会计期末关账、结转损益的流程,月结前三天冻结单据,"总账,记账凭证",
+多币种,Multi-currency,财务概念,支持多货币计价与汇率折算的核算能力,海外子公司用多币种核算,"总账,期末结账",
+固定资产,FA (Fixed Asset),财务概念,设备、房产等长期资产的台账与折旧管理,资产卡片每月自动计提折旧,"总账,期末结账",
+预算,Budget,财务概念,费用与支出的事前控制额度，超支可拦截,超预算的报销单一律驳回,"成本中心,记账凭证",
+会计期间,Fiscal Period,财务概念,财务核算的时间分段，关账后禁止过账,上期已关，凭证只能过到本期,"期末结账,总账",
+信用额度,Credit Limit,销售链路,客户可赊销的最大金额控制,超信用额度的 SO 自动冻结,"应收账款,销售订单",
+主从页,Master-Detail Page,页面与单据,表头加可编辑明细行结构的单据页面,订单页做成主从页，明细行可增删,"表单页,单据状态机",
+单据状态机,Document State Machine,页面与单据,草稿、待审、已审、关闭等单据状态的流转规则,已审核的单据不允许直接改,"审批流,主从页",
+审批流,Approval Workflow,页面与单据,单据按规则逐级流转签核的流程,金额超十万加一级审批,"工作流,单据状态机",
+弹窗选择器,Lookup / Picker,页面与单据,从弹窗中搜索选择物料、客户等资料的控件,物料字段用 Lookup，别让人手输编码,"主数据,主从页",
+单据关联,Document Flow,页面与单据,上下游单据的可追溯关联链,从发票能一路反查到原始 PR,"P2P,O2C",
+树形页,Tree Page,页面与单据,维护和展示层级数据的页面范式，如 BOM 树、科目树,BOM 展开做成树形页，支持逐级加载,"BOM,主从页",
+下钻,Drill-down,页面与单据,从汇总指标逐层点击查看明细的分析交互,销售报表支持按区域下钻到单据,"BI,透视表",
+透视表,Pivot Table,页面与单据,行列维度自由组合的交叉分析表格,库龄分析做成透视表，维度随便切,"下钻,BI",
+导入向导,Import Wizard,页面与单据,上传、字段映射、校验、结果多步骤的批量导入流程,物料批量导入走向导，先映射再校验,"主数据,数据字典",
+状态标签,Status Badge,页面与单据,标识单据所处状态的小标签，颜色区分语义,待审批黄色，已审核绿色，作废灰色,"单据状态机,审批流",
+WBS,WBS (Work Breakdown Structure),业务模块,把项目逐层分解为可管理工作包的结构,项目先拆 WBS 再排工时,"PS,工时填报",
+工时填报,Timesheet,业务模块,按人按项目记录投入工时的单据,工时周五截止填报，逾期锁单,"WBS,PS",
+RBAC,RBAC (Role-Based Access Control),系统机制,按角色分配菜单、按钮与数据权限的访问控制模型,权限按 RBAC 配，别给人单独授权,"数据权限,授权",
+数据权限,Data Permission,系统机制,按组织、仓库、部门限制可见数据范围,仓管只能看自己仓的数据，配数据权限,"RBAC,多组织",
+多组织,Multi-Org / Multi-tenant,系统机制,集团、公司、工厂、仓库多层级组织架构的支持能力,集团版要支持多组织数据隔离,"数据权限,RBAC",
+数据字典,Data Dictionary,系统机制,枚举值与基础代码的统一管理配置,单据类型别硬编码，放数据字典,"编码规则,主数据",
+编码规则,Numbering Rule,系统机制,单据号、物料号自动生成的规则配置,PO 编号按编码规则生成：前缀加日期加流水,"数据字典,主从页",
+工作流,Workflow / BPM,系统机制,可配置的业务流程与审批引擎,审批节点走工作流引擎配置,"审批流,OA",
+EDI,EDI (Electronic Data Interchange),系统机制,与客户、供应商系统间的标准化数据交换,大客户要求 EDI 对接订单,"API,预发货通知",
+审计日志,Audit Log,系统机制,记录谁在何时改了什么的操作留痕,金额字段改动必须进审计日志,"RBAC,数据权限",
+数据脱敏,Data Masking,系统机制,敏感字段按权限隐藏或打码显示的字段级权限,手机号对普通角色脱敏展示,"数据权限,RBAC",
+会签,Countersign / Joint Approval,系统机制,审批节点需多人全部通过才能继续流转的签核方式,大额付款单走会签，一个人否就驳回,"审批流,工作流",

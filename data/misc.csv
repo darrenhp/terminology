@@ -1,4 +1,4 @@
-term,en,category,definition,scenario,related
-函数调用,Function Calling,待归类,模型按 schema 输出参数，交给代码去执行,与 ai-llm 已有「Function Calling」同义，待合并,"工具调用,JSON"
-少样本示例,Few-shot,待归类,在提示词里给几个例子让模型照着学,与 ai-llm 已有「少样本提示」近义，待合并,"零样本,提示词工程"
-AB测试,A/B Test,待归类,两版随机给用户看，看哪个好,与已有「AB 实验」同义，待合并,"灰度发布,实验"
+term,en,category,definition,scenario,related,pitfall
+函数调用,Function Calling,待归类,模型按 schema 输出参数，交给代码去执行,与 ai-llm 已有「Function Calling」同义，待合并,"工具调用,JSON",
+少样本示例,Few-shot,待归类,在提示词里给几个例子让模型照着学,与 ai-llm 已有「少样本提示」近义，待合并,"零样本,提示词工程",
+AB测试,A/B Test,待归类,两版随机给用户看，看哪个好,与已有「AB 实验」同义，待合并,"灰度发布,实验",

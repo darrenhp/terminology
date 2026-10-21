@@ -85,7 +85,7 @@
     "group": "后端与基础设施",
     "desc": "后端架构风格、服务治理、数据缓存与性能指标术语",
     "file": "backend.csv",
-    "count": 91
+    "count": 131
   },
   {
     "id": "consistency",
@@ -93,7 +93,7 @@
     "group": "后端与基础设施",
     "desc": "分布式系统中的一致性模型、分布式事务、并发控制与共识算法术语",
     "file": "consistency.csv",
-    "count": 48
+    "count": 50
   },
   {
     "id": "deployment",
@@ -101,7 +101,7 @@
     "group": "后端与基础设施",
     "desc": "CI/CD、发布策略、基础设施与故障治理术语",
     "file": "deployment.csv",
-    "count": 81
+    "count": 84
   },
   {
     "id": "database",
@@ -109,7 +109,7 @@
     "group": "后端与基础设施",
     "desc": "关系型与非关系型数据库的基础概念、索引优化、事务锁与架构扩展术语",
     "file": "database.csv",
-    "count": 54
+    "count": 58
   },
   {
     "id": "security",

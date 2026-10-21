@@ -22,10 +22,12 @@ from data_growth import DOMAINS as D_GROWTH
 from data_finance import DOMAINS as D_FINANCE
 from data_zhihu import DOMAINS as D_ZHIHU
 from data_zhihu import MERGE_TERMS, DOMAIN_PATCH
+from data_pitfall import PITFALLS, NEW_TERMS
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 DATA_DIR = os.path.join(ROOT, "data")
-HEADER = ["term", "en", "category", "definition", "scenario", "related"]
+HEADER = ["term", "en", "category", "definition", "scenario", "related", "pitfall"]
+REQUIRED_COLS = 6  # pitfall 为可选列，允许为空
 
 BASE_ORDER = D_COLLAB + D_PM + D_GIT + D_FRONTEND + D_BACKEND + D_AI + D_ERP + D_WFM + D_CHARTS + D_GROWTH + D_FINANCE
 
@@ -56,6 +58,8 @@ def build():
     manifest = []
     seen_ids = set()
     seen_terms = {}
+    hit_pitfalls = set()
+    pit_count = 0
     problems = []
 
     for d in DOMAIN_ORDER:
@@ -64,18 +68,27 @@ def build():
             problems.append("重复领域 id: %s" % did)
         seen_ids.add(did)
 
-        terms = d["terms"]
-        for t in terms:
-            if len(t) != 6:
-                problems.append("%s: 字段数不为 6: %r" % (did, t))
+        # 追加「避坑」补充条目，并把旧条目的 6 元组补齐到 7 列
+        terms = []
+        for t in list(d["terms"]) + list(NEW_TERMS.get(did, [])):
+            t = list(t) + [""] * (len(HEADER) - len(t))
+            if len(t) != len(HEADER):
+                problems.append("%s: 字段数不为 %d: %r" % (did, len(HEADER), t))
                 continue
-            for i, v in enumerate(t):
+            pitfall = PITFALLS.get((did, t[0]))
+            if pitfall is not None:
+                t[6] = pitfall
+                hit_pitfalls.add((did, t[0]))
+            for i, v in enumerate(t[:REQUIRED_COLS]):
                 if v is None or str(v).strip() == "":
                     problems.append("%s: 空字段 [%s] 第%d列" % (did, t[0], i))
             key = (did, t[0])
             if key in seen_terms:
                 problems.append("%s: 领域内重复术语 [%s]" % (did, t[0]))
             seen_terms[key] = True
+            if str(t[6]).strip():
+                pit_count += 1
+            terms.append(t)
 
         path = os.path.join(DATA_DIR, did + ".csv")
         with open(path, "w", newline="", encoding="utf-8") as f:
@@ -96,10 +109,16 @@ def build():
     with open(os.path.join(DATA_DIR, "domains.json"), "w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
+    # 补坑条目若没匹配到术语（写错领域或改名），直接报错而不是静默丢弃
+    for key in PITFALLS:
+        if key not in hit_pitfalls:
+            problems.append("补坑未命中术语: %s / %s" % (key[0], key[1]))
+
     total = sum(m["count"] for m in manifest)
     print("生成 %d 个领域 CSV, 共 %d 条术语 -> %s" % (len(manifest), total, DATA_DIR))
     for m in manifest:
         print("  %-18s %-12s %3d 条  (%s)" % (m["id"], m["group"], m["count"], m["file"]))
+    print("  其中带「坑」的术语 %d 条" % pit_count)
     if problems:
         print("\n发现问题 %d 处:" % len(problems))
         for p in problems:

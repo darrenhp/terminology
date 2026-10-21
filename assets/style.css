@@ -438,8 +438,9 @@ body {
 .col-domain { width: 9%; min-width: 96px; }
 .col-en { width: 14%; min-width: 130px; }
 .col-cat { width: 9%; min-width: 90px; }
-.col-def { width: 23%; }
-.col-scene { width: 18%; }
+.col-def { width: 20%; }
+.col-scene { width: 16%; }
+.col-pit { width: 19%; min-width: 150px; }
 .col-rel { width: 12%; min-width: 130px; }
 
 /* hidden 属性对 table 表头单元格同样生效 */
@@ -476,6 +477,9 @@ body {
 .term-scene { color: var(--text-dim); }
 .term-scene::before { content: "“"; color: var(--text-faint); }
 .term-scene::after { content: "”"; color: var(--text-faint); }
+
+/* 避坑列：琥珀色警示，弱于正文但一眼可辨 */
+.term-pit { color: var(--amber); font-size: 13px; line-height: 1.55; }
 
 .term-rel { display: flex; flex-wrap: wrap; gap: 5px; }
 

@@ -1,57 +1,57 @@
-term,en,category,definition,scenario,related
-DOM,Document Object Model,核心概念,浏览器把 HTML 解析成的树状对象模型,直接操作 DOM 会触发回流,"虚拟 DOM,CSSOM"
-虚拟 DOM,Virtual DOM,核心概念,用 JS 对象模拟 DOM 树，diff 后最小化更新,React 用虚拟 DOM 减少真实操作,"DOM,diff"
-回流,Reflow,核心概念,布局变化导致浏览器重新计算几何位置,改宽度会回流，改颜色只会重绘,"重绘,布局"
-重绘,Repaint,核心概念,外观变化但不影响布局的重新绘制,重绘比回流便宜，但能不触发最好,"回流,合成"
-组件,Component,核心概念,可复用、独立管理状态与视图的 UI 单元,抽成组件，别到处复制代码,"props,复用"
-Props,Properties,核心概念,父组件传递给子组件的只读数据,改 props 要从父组件改,"state,组件"
-State,State,核心概念,组件内部管理、会随交互变化的数据,这个状态提升到父组件管理,"props,受控"
-生命周期,Lifecycle,核心概念,组件从创建到销毁的各阶段钩子,在生命周期里清理定时器,"hook,副作用"
-副作用,Side Effect,核心概念,渲染之外与外部世界的交互，如请求、订阅,副作用放 useEffect 里,"hook,异步"
-Hook,Hook,核心概念,函数组件中使用状态和副作用的机制,自定义 Hook 复用逻辑,"副作用,生命周期"
-受控/非受控,Controlled / Uncontrolled,核心概念,表单值由框架状态管理还是 DOM 自管理,这个输入框做成受控组件,"表单,state"
-事件委托,Event Delegation,核心概念,把监听器挂在父元素上利用冒泡统一处理,长列表用事件委托绑点击,"事件冒泡,性能"
-事件冒泡/捕获,Bubbling / Capturing,核心概念,事件从目标向上或从根向下传播的两个阶段,stopPropagation 阻止冒泡,"事件委托,DOM"
-防抖,Debounce,核心概念,事件停止触发 n 毫秒后才执行一次,搜索框用防抖，别每次按键都请求,"节流,性能"
-节流,Throttle,核心概念,固定时间间隔内最多执行一次,滚动监听用节流,"防抖,性能"
-宏任务/微任务,Macro / Micro Task,核心概念,事件循环中两类异步任务的执行队列,Promise 是微任务，setTimeout 是宏任务,"事件循环,异步"
-回调地狱,Callback Hell,核心概念,多层嵌套回调导致代码难以维护,用 async/await 救回调地狱,"Promise,异步"
-服务端渲染,SSR / Server-Side Rendering,渲染模式,服务端直接渲染 HTML 再下发,SEO 页面用 SSR,"CSR,水合"
-CSR,Client-Side Rendering,渲染模式,浏览器下载 JS 后动态渲染页面,纯 CSR 首屏慢,"SSR,SPA"
-SSG,Static Site Generation,渲染模式,构建时预渲染成静态 HTML,博客站用 SSG，访问最快,"SSR,ISR"
-ISR,Incremental Static Regeneration,渲染模式,静态页面按需增量再生成,ISR 兼顾静态速度和内容新鲜,"SSG,SSR"
-水合,Hydration,渲染模式,SSR 的 HTML 在客户端恢复交互能力的过程,水合失败页面就点了没反应,"SSR,CSR"
-SPA,Single Page Application,渲染模式,单页应用，路由切换不刷新整页,SPA 用前端路由,"MPA,路由"
-MPA,Multi Page Application,渲染模式,多页应用，每次跳转整体刷新,MPA 首屏快但切换有白屏,SPA
-PWA,Progressive Web App,渲染模式,让网页具备离线、安装等原生能力的方案,PWA 可以加到手机桌面,"Service Worker,离线"
-懒加载,Lazy Loading,工程化,用到时再加载资源，减少首次负担,路由懒加载，按需加载,"代码分割,预加载"
-代码分割,Code Splitting,工程化,把打包产物拆成多个按需加载的 chunk,代码分割后首包小了一半,"懒加载,Tree Shaking"
-Tree Shaking,Tree Shaking,工程化,构建时移除未被引用的死代码,上 ESM 才能 Tree Shaking,"打包,死代码"
-Polyfill,Polyfill,工程化,用 JS 补足浏览器缺失的新特性,给旧浏览器上 polyfill,"Babel,兼容"
-转译,Transpile,工程化,把新语法编译成兼容版本,TS 需要转译成 JS 才能跑,"Babel,构建"
-构建,Build,工程化,把源码转换成可部署产物的过程,构建挂了，先看报错,"打包,CI"
-首屏,First Screen,性能体验,用户打开页面第一眼看到的内容,首屏优化到 1 秒内,"FCP,白屏"
-FCP/LCP,First / Largest Contentful Paint,性能体验,首次内容绘制与最大内容绘制时间,LCP 超了，图片太大,"首屏,CLS"
-CLS,Cumulative Layout Shift,性能体验,累积布局偏移，衡量视觉稳定性,字体加载导致 CLS 高,"布局抖动,体验"
-白屏,White Screen,性能体验,页面打开后长时间无内容的状态,JS 报错导致白屏,"首屏,骨架屏"
-骨架屏,Skeleton Screen,性能体验,用灰色占位块提前展示页面结构,加载中用骨架屏代替 Loading,"首屏,占位"
-强缓存/协商缓存,Strong / Negotiated Cache,性能体验,浏览器复用本地资源的两种缓存策略,静态资源走强缓存，HTML 走协商缓存,"缓存,CDN"
-埋点,Tracking,性能体验,采集用户行为与性能数据并上报,接入性能埋点监控,"监控,指标"
-监控,Monitoring,性能体验,对错误、性能、业务的持续观测,上线后盯监控看报错率,"告警,埋点"
-Source Map,Source Map,性能体验,映射压缩代码到源码的调试文件,线上报错靠 Source Map 定位,"调试,构建"
-语义化结构,Semantic DOM,工程化,组件库按 root/mask/section 等语义节点暴露样式定制点的结构,用 Semantic DOM 定制 Tour 卡片样式,"Design Token,组件"
-无障碍,Accessibility / ARIA,工程化,让辅助技术用户也能操作界面的设计规范,输入框要补 aria-label 保证无障碍,"ARIA,键盘导航"
-键盘导航,Keyboard Navigation,工程化,仅用键盘完成焦点切换与操作的能力,Tab 和 Shift+Tab 切换焦点,"焦点,无障碍"
-微前端,Micro Frontends,工程化,把大应用拆成多个独立开发部署的子应用,老应用拆不动，用微前端渐进迁移,"Monorepo,SPA"
-模块联邦,Module Federation,工程化,跨应用在运行时共享模块的构建能力,公共组件用模块联邦共享给各子应用,"微前端,代码分割"
-HMR,Hot Module Replacement,工程化,开发时局部替换改动模块而无需整页刷新,HMR 挂了，样式改了不生效,"构建,懒加载"
-CSS 变量,CSS Custom Properties,工程化,可在运行时修改的样式变量，主题切换的基础,暗色主题用 CSS 变量切换,"Design Token,深色模式"
-clamp(),clamp() Function,工程化,将数值限制在上下限之间的 CSS 函数，做流式缩放,标题字号用 clamp() 自适应,"视口单位,流式布局"
-Web Worker,Web Worker,核心概念,在后台线程执行脚本避免阻塞主线程,大文件解析丢给 Web Worker,"长任务,宏任务/微任务"
-Service Worker,Service Worker,核心概念,充当页面代理可拦截请求的浏览器后台脚本,离线缓存靠 Service Worker 实现,"PWA,强缓存/协商缓存"
-WASM,WebAssembly,核心概念,在浏览器以接近原生速度运行的二进制格式,视频转译放到 WASM 里做,"Web Worker,性能体验"
-Shadow DOM,Shadow DOM,核心概念,将组件 DOM 与样式封装隔离的技术,组件样式互不污染，用 Shadow DOM 封装,"DOM,虚拟 DOM"
-内存泄漏,Memory Leak,性能体验,不再使用的对象因被引用而无法回收,页面越用越卡，查一下内存泄漏,"OOM,监控"
-长任务,Long Task,性能体验,占用主线程超过 50ms 的任务,首屏有个长任务，把初始化拆了,"宏任务/微任务,卡顿"
-TTFB,Time to First Byte,性能体验,从发请求到收到首字节的时间,TTFB 高，查服务端渲染耗时,"FCP/LCP,延迟"
-INP,Interaction to Next Paint,性能体验,衡量交互响应速度的核心性能指标,INP 超标，事件回调里有重计算,"CLS,长任务"
+term,en,category,definition,scenario,related,pitfall
+DOM,Document Object Model,核心概念,浏览器把 HTML 解析成的树状对象模型,直接操作 DOM 会触发回流,"虚拟 DOM,CSSOM",
+虚拟 DOM,Virtual DOM,核心概念,用 JS 对象模拟 DOM 树，diff 后最小化更新,React 用虚拟 DOM 减少真实操作,"DOM,diff",
+回流,Reflow,核心概念,布局变化导致浏览器重新计算几何位置,改宽度会回流，改颜色只会重绘,"重绘,布局",
+重绘,Repaint,核心概念,外观变化但不影响布局的重新绘制,重绘比回流便宜，但能不触发最好,"回流,合成",
+组件,Component,核心概念,可复用、独立管理状态与视图的 UI 单元,抽成组件，别到处复制代码,"props,复用",
+Props,Properties,核心概念,父组件传递给子组件的只读数据,改 props 要从父组件改,"state,组件",
+State,State,核心概念,组件内部管理、会随交互变化的数据,这个状态提升到父组件管理,"props,受控",
+生命周期,Lifecycle,核心概念,组件从创建到销毁的各阶段钩子,在生命周期里清理定时器,"hook,副作用",
+副作用,Side Effect,核心概念,渲染之外与外部世界的交互，如请求、订阅,副作用放 useEffect 里,"hook,异步",
+Hook,Hook,核心概念,函数组件中使用状态和副作用的机制,自定义 Hook 复用逻辑,"副作用,生命周期",
+受控/非受控,Controlled / Uncontrolled,核心概念,表单值由框架状态管理还是 DOM 自管理,这个输入框做成受控组件,"表单,state",
+事件委托,Event Delegation,核心概念,把监听器挂在父元素上利用冒泡统一处理,长列表用事件委托绑点击,"事件冒泡,性能",
+事件冒泡/捕获,Bubbling / Capturing,核心概念,事件从目标向上或从根向下传播的两个阶段,stopPropagation 阻止冒泡,"事件委托,DOM",
+防抖,Debounce,核心概念,事件停止触发 n 毫秒后才执行一次,搜索框用防抖，别每次按键都请求,"节流,性能",
+节流,Throttle,核心概念,固定时间间隔内最多执行一次,滚动监听用节流,"防抖,性能",
+宏任务/微任务,Macro / Micro Task,核心概念,事件循环中两类异步任务的执行队列,Promise 是微任务，setTimeout 是宏任务,"事件循环,异步",
+回调地狱,Callback Hell,核心概念,多层嵌套回调导致代码难以维护,用 async/await 救回调地狱,"Promise,异步",
+服务端渲染,SSR / Server-Side Rendering,渲染模式,服务端直接渲染 HTML 再下发,SEO 页面用 SSR,"CSR,水合",
+CSR,Client-Side Rendering,渲染模式,浏览器下载 JS 后动态渲染页面,纯 CSR 首屏慢,"SSR,SPA",
+SSG,Static Site Generation,渲染模式,构建时预渲染成静态 HTML,博客站用 SSG，访问最快,"SSR,ISR",
+ISR,Incremental Static Regeneration,渲染模式,静态页面按需增量再生成,ISR 兼顾静态速度和内容新鲜,"SSG,SSR",
+水合,Hydration,渲染模式,SSR 的 HTML 在客户端恢复交互能力的过程,水合失败页面就点了没反应,"SSR,CSR",
+SPA,Single Page Application,渲染模式,单页应用，路由切换不刷新整页,SPA 用前端路由,"MPA,路由",
+MPA,Multi Page Application,渲染模式,多页应用，每次跳转整体刷新,MPA 首屏快但切换有白屏,SPA,
+PWA,Progressive Web App,渲染模式,让网页具备离线、安装等原生能力的方案,PWA 可以加到手机桌面,"Service Worker,离线",
+懒加载,Lazy Loading,工程化,用到时再加载资源，减少首次负担,路由懒加载，按需加载,"代码分割,预加载",
+代码分割,Code Splitting,工程化,把打包产物拆成多个按需加载的 chunk,代码分割后首包小了一半,"懒加载,Tree Shaking",
+Tree Shaking,Tree Shaking,工程化,构建时移除未被引用的死代码,上 ESM 才能 Tree Shaking,"打包,死代码",
+Polyfill,Polyfill,工程化,用 JS 补足浏览器缺失的新特性,给旧浏览器上 polyfill,"Babel,兼容",
+转译,Transpile,工程化,把新语法编译成兼容版本,TS 需要转译成 JS 才能跑,"Babel,构建",
+构建,Build,工程化,把源码转换成可部署产物的过程,构建挂了，先看报错,"打包,CI",
+首屏,First Screen,性能体验,用户打开页面第一眼看到的内容,首屏优化到 1 秒内,"FCP,白屏",
+FCP/LCP,First / Largest Contentful Paint,性能体验,首次内容绘制与最大内容绘制时间,LCP 超了，图片太大,"首屏,CLS",
+CLS,Cumulative Layout Shift,性能体验,累积布局偏移，衡量视觉稳定性,字体加载导致 CLS 高,"布局抖动,体验",
+白屏,White Screen,性能体验,页面打开后长时间无内容的状态,JS 报错导致白屏,"首屏,骨架屏",
+骨架屏,Skeleton Screen,性能体验,用灰色占位块提前展示页面结构,加载中用骨架屏代替 Loading,"首屏,占位",
+强缓存/协商缓存,Strong / Negotiated Cache,性能体验,浏览器复用本地资源的两种缓存策略,静态资源走强缓存，HTML 走协商缓存,"缓存,CDN",
+埋点,Tracking,性能体验,采集用户行为与性能数据并上报,接入性能埋点监控,"监控,指标",
+监控,Monitoring,性能体验,对错误、性能、业务的持续观测,上线后盯监控看报错率,"告警,埋点",
+Source Map,Source Map,性能体验,映射压缩代码到源码的调试文件,线上报错靠 Source Map 定位,"调试,构建",
+语义化结构,Semantic DOM,工程化,组件库按 root/mask/section 等语义节点暴露样式定制点的结构,用 Semantic DOM 定制 Tour 卡片样式,"Design Token,组件",
+无障碍,Accessibility / ARIA,工程化,让辅助技术用户也能操作界面的设计规范,输入框要补 aria-label 保证无障碍,"ARIA,键盘导航",
+键盘导航,Keyboard Navigation,工程化,仅用键盘完成焦点切换与操作的能力,Tab 和 Shift+Tab 切换焦点,"焦点,无障碍",
+微前端,Micro Frontends,工程化,把大应用拆成多个独立开发部署的子应用,老应用拆不动，用微前端渐进迁移,"Monorepo,SPA",
+模块联邦,Module Federation,工程化,跨应用在运行时共享模块的构建能力,公共组件用模块联邦共享给各子应用,"微前端,代码分割",
+HMR,Hot Module Replacement,工程化,开发时局部替换改动模块而无需整页刷新,HMR 挂了，样式改了不生效,"构建,懒加载",
+CSS 变量,CSS Custom Properties,工程化,可在运行时修改的样式变量，主题切换的基础,暗色主题用 CSS 变量切换,"Design Token,深色模式",
+clamp(),clamp() Function,工程化,将数值限制在上下限之间的 CSS 函数，做流式缩放,标题字号用 clamp() 自适应,"视口单位,流式布局",
+Web Worker,Web Worker,核心概念,在后台线程执行脚本避免阻塞主线程,大文件解析丢给 Web Worker,"长任务,宏任务/微任务",
+Service Worker,Service Worker,核心概念,充当页面代理可拦截请求的浏览器后台脚本,离线缓存靠 Service Worker 实现,"PWA,强缓存/协商缓存",
+WASM,WebAssembly,核心概念,在浏览器以接近原生速度运行的二进制格式,视频转译放到 WASM 里做,"Web Worker,性能体验",
+Shadow DOM,Shadow DOM,核心概念,将组件 DOM 与样式封装隔离的技术,组件样式互不污染，用 Shadow DOM 封装,"DOM,虚拟 DOM",
+内存泄漏,Memory Leak,性能体验,不再使用的对象因被引用而无法回收,页面越用越卡，查一下内存泄漏,"OOM,监控",
+长任务,Long Task,性能体验,占用主线程超过 50ms 的任务,首屏有个长任务，把初始化拆了,"宏任务/微任务,卡顿",
+TTFB,Time to First Byte,性能体验,从发请求到收到首字节的时间,TTFB 高，查服务端渲染耗时,"FCP/LCP,延迟",
+INP,Interaction to Next Paint,性能体验,衡量交互响应速度的核心性能指标,INP 超标，事件回调里有重计算,"CLS,长任务",

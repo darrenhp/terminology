@@ -173,6 +173,7 @@
           definition: r[3].trim(),
           scenario: r[4].trim(),
           related: splitRelated(r[5]),
+          pitfall: (r[6] || "").trim(), // 第 7 列可选：避坑要点
         };
       });
       state.cache[id] = items;
@@ -227,7 +228,7 @@
     }
     var q = state.query.trim().toLowerCase();
     if (!q) return true;
-    var hay = (item.term + " " + item.en + " " + item.definition + " " + item.scenario + " " + item.category + " " + item.domainName + " " + item.related.join(" ")).toLowerCase();
+    var hay = (item.term + " " + item.en + " " + item.definition + " " + item.scenario + " " + item.category + " " + item.domainName + " " + item.related.join(" ") + " " + item.pitfall).toLowerCase();
     return hay.indexOf(q) !== -1;
   }
 
@@ -365,6 +366,9 @@
     $("empty").hidden = shown.length > 0;
     var showDomain = state.current === "all";
     $("thDomain").hidden = !showDomain; // 仅“全部术语”视图显示领域列
+    // 避坑列按需显示：当前结果里没有任何坑位时整列隐藏，避免大片空单元格
+    var showPit = shown.some(function (it) { return !!it.pitfall; });
+    $("thPit").hidden = !showPit;
     var html = "";
     shown.forEach(function (it) {
       var rel = it.related.map(function (r) {
@@ -390,6 +394,7 @@
         '<td><span class="term-cat">' + escapeHTML(it.category) + "</span></td>" +
         '<td class="term-def">' + escapeHTML(it.definition) + "</td>" +
         '<td class="term-scene">' + escapeHTML(it.scenario) + "</td>" +
+        (showPit ? '<td class="term-pit">' + (it.pitfall ? "⚠ " + escapeHTML(it.pitfall) : "—") + "</td>" : "") +
         '<td><div class="term-rel">' + rel + "</div></td>" +
         "</tr>";
     });
@@ -524,6 +529,6 @@
     renderNav();
     loadCurrent();
   }).catch(function (err) {
-    tbody.innerHTML = '<tr><td colspan="7" class="loading">索引加载失败: ' + escapeHTML(err.message) + "</td></tr>";
+    tbody.innerHTML = '<tr><td colspan="8" class="loading">索引加载失败: ' + escapeHTML(err.message) + "</td></tr>";
   });
 })();
